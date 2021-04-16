@@ -18,8 +18,8 @@ export class VaccinationService {
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  getByState(state:string):Observable<Vacevent>{
-    return this.http.get<Vacevent>(`${this.api}/vaccinationevents/${state}`).
+  getByState(state:string):Observable<Array<Vacevent>>{
+    return this.http.get<Array<Vacevent>>(`${this.api}/vaccinationevents/${state}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
