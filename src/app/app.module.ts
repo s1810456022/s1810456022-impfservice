@@ -8,10 +8,11 @@ import { VaccinationService } from './shared/vaccination.service';
 import { UserService } from './shared/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { VaceventStateComponent } from './vacevent-state/vacevent-state.component';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule ],
-  declarations: [ AppComponent, HomeComponent ],
+  declarations: [ AppComponent, HomeComponent, VaceventStateComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ VaccinationService, UserService]
 })
