@@ -7,48 +7,44 @@ import { Vacevent } from './vacevent';
 @Injectable()
 export class VaccinationService {
 
-  private api = "https://bookstore21.s1810456022.student.kwmhgb.at/api";
+  private api = "https://impfservice.s1810456022.student.kwmhgb.at/api";
 
   constructor(private http:HttpClient) { 
 
   }
 
-  getAll():Observable<Array<Book>>{
-    return this.http.get<Array<Book>>(`${this.api}/books`).
+  getAll():Observable<Array<Vacevent>>{
+    return this.http.get<Array<Vacevent>>(`${this.api}/vaccinationevents`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  getSingle(isbn:string):Observable<Book>{
-    return this.http.get<Book>(`${this.api}/book/${isbn}`).
+  getByState(state:string):Observable<Vacevent>{
+    return this.http.get<Vacevent>(`${this.api}/vaccinationevents/${state}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  remove(isbn:string):Observable<any>{
-    return this.http.delete(`${this.api}/book/${isbn}`).
+  getSingle(id:bigint):Observable<Vacevent>{
+    return this.http.get<Vacevent>(`${this.api}/vaccinationevent/${id}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  getAllSearch(searchTerm:string):Observable<Array<Book>>{
-    return this.http.get<Array<Book>>(`${this.api}/books/search/${searchTerm}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
-  }
-
-  create(book: Book):Observable<any>{
-    return this.http.post(`${this.api}/book`, book).
+  remove(id:bigint):Observable<any>{
+    return this.http.delete(`${this.api}/vaccinationevent/${id}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  update(book: Book):Observable<any>{
-    return this.http.put(`${this.api}/book/${book.isbn}`, book).
+  create(vacevent: Vacevent):Observable<any>{
+    return this.http.post(`${this.api}/vaccinationevent`, vacevent).
+      pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
+  update(vacevent: Vacevent):Observable<any>{
+    return this.http.put(`${this.api}/vaccinationevent/${vacevent.id}`, vacevent).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
   private errorHandler(error:Error | any){
     return throwError(error);
-  }
-
-  check(isbn:String):Observable<Boolean>{
-    return this.http.get<Boolean>(`${this.api}/books/checkisbn/${isbn}`).
-      pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
 }
