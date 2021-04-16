@@ -1,4 +1,5 @@
 import { Component, VERSION } from '@angular/core';
+import { Vacevent } from './shared/vacevent';
 
 @Component({
   selector: 'impfs-root',
@@ -9,14 +10,14 @@ export class AppComponent  {
   listOn=true;
   detailsOn=false;
 
-  book: Book;
+  vacevent: Vacevent;
 
   showList(){
     this.listOn = true;
     this.detailsOn = false;
   }
 
-  showDetails(book:Book){
+  showDetails(vacevent:Vacevent){
     this.book = book;
     this.listOn = false;
     this.detailsOn = true;
