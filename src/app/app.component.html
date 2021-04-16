@@ -1,5 +1,20 @@
-<div class="ui two item tabs menu">
-  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
-  <a routerLink="vaccinationevents" routerLinkActive="active" class="item">Impftermine</a>
+
+    <div class="ui masthead vertical segment">
+      <div class="ui container two column grid"> 
+        <div class="column">
+          <h1 class="ui header">Österreich impft</h1>
+        </div>
+        <div class="column">
+          <div class="ui right floated main menu">
+            <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+            <a routerLink="vaccinationevents" routerLinkActive="active" class="item">Impftermine</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui vertical beg transition segment"></div>
+<div class="main ui container">
+  
+  <router-outlet></router-outlet>
+
 </div>
-<router-outlet></router-outlet>
