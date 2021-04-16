@@ -2,7 +2,7 @@ import { Component, VERSION } from '@angular/core';
 import { Vacevent } from './shared/vacevent';
 
 @Component({
-  selector: 'impfs-root',
+  selector: 'vac-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
@@ -18,7 +18,7 @@ export class AppComponent  {
   }
 
   showDetails(vacevent:Vacevent){
-    this.book = book;
+    this.vacevent = vacevent;
     this.listOn = false;
     this.detailsOn = true;
   }
