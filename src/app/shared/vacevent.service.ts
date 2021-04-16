@@ -7,7 +7,7 @@ import { Vacevent } from './vacevent';
 @Injectable()
 export class VaceventService {
 
-  private api = "http://impfservice.s1810456022.student.kwmhgb.at/api";
+  private api = "https://impfservice.s1810456022.student.kwmhgb.at/api";
 
   constructor(private http:HttpClient) { 
 
