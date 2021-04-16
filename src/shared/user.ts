@@ -14,9 +14,5 @@ export class User {
   public vacStatus:boolean,
   public email:string,
   public password:string,
-  public startTime:Time, 
-  public endTime:Time, 
-  public maxVac:number, 
-  public published:Date, 
-  public vaclocation_id:number) {}
+  public vacevent_id?:number) {}
 }
