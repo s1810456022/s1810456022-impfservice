@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { VaccinationService } from '../shared/vaccination.service';
 import { Vacevent } from '../shared/vacevent';
+import { VaceventService } from '../shared/vacevent.service';
 
 @Component({
   selector: 'vac-vacevent-list',
@@ -12,10 +12,12 @@ export class VaceventListComponent implements OnInit {
 
   @Output() showDetailsEvent = new EventEmitter<Vacevent>();
 
-  constructor(private vac:VaccinationService) { }
+  constructor(private vac:VaceventService) { }
 
   ngOnInit() {
+    console.log(this.vacevents);
     this.vac.getAll().subscribe(res => this.vacevents = res);
+    console.log(this.vacevents);
   }
 
 }

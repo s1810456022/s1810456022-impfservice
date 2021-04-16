@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { VaccinationService } from '../shared/vaccination.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
+import { VaceventService } from '../shared/vacevent.service';
 
 @Component({
   selector: 'vac-vacevent-state',
@@ -13,7 +13,7 @@ export class VaceventStateComponent implements OnInit {
 
   @Output() showDetailsEvent = new EventEmitter<Vacevent>();
 
-  constructor(private vac:VaccinationService, private route:ActivatedRoute, private router:Router) { }
+  constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     const params = this.route.snapshot.params;
