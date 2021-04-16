@@ -17,7 +17,7 @@ export class VaceventStateComponent implements OnInit {
 
   ngOnInit() {
     const params = this.route.snapshot.params;
-    this.vac.getByState(params['state']).subscribe(res => this.vacevents = res);
+    console.log(this.vac.getByState(params['state']).subscribe(res => this.vacevents = res));
   }
 
 }
