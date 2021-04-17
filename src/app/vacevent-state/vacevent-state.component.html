@@ -1,31 +1,51 @@
+<!-- Intoduction -->
 <div class="ui vertical stripe segment">
   <h2>Anmeldung zur Corona-Impfung</h2>
   <p>Wählen Sie einen Impftermin aus. Sie können sich nur anmelden, wenn Sie eingeloggt sind.</p>
 </div>
-<div class="ui vertical strip segment">
+<!-- Filters for Vacevents -->
+<div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
   <div class="ui middle aligned grid container">
-    <div class="three wide column">
-      <p class="ui">{{state}}</p>
+    <div class="two wide column">
+      <div class="ui ">
+        <p>{{state}}</p>
+      </div>
     </div>
-    <div class="three wide column">
-      <p class="floated">Stadt</p>
-      <select class="floated">
-          <option value="">one</option>
-          <option value="">two</option>
-        </select>
+    <div class="nine wide column">
+      <div class="ui form">
+        <div class="inline fields">
+          <div class="eight wide field">
+            <label>Stadt</label>
+            <select class="floated">
+              <option value="">one</option>
+              <option value="">two</option>
+            </select>
+          </div>
+          <div class="eight wide field">
+            <label>Standort</label>
+            <select class="floated">
+              <option value="">one</option>
+              <option value="">two</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="three wide column">
-      <p>Standort</p>
-      <select>
-          <option value="">one</option>
-          <option value="">two</option>
-        </select>
-    </div>
+  </div>
 </div>
-<div class="ui vertical strip segment">
+<!-- List of Vacevents -->
+<div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
   <ul>
     <li *ngFor="let vacevent of vacevents" class="item vac-vacevent-state-item" [vacevent]="vacevent">
     </li>
   </ul>
 </div>
-  <p *ngIf="vacevents && !vacevents.length">Es gibt zur Zeit noch keien Impftermine für dieses Bundesland.</p>
+<!--No vacevents-->
+<div *ngIf="vacevents && !vacevents.length" class>
+  <div class="ui red icon message">
+    <i class="x icon"></i>
+    <div class="content">
+      <p>Es gibt zur Zeit noch keien Impftermine für dieses Bundesland.</p>
+    </div>
+  </div>
+</div>
