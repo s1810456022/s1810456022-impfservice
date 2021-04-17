@@ -11,6 +11,8 @@ export class VaceventStateItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.vacevent.vaclocation_id);
+    console.log(this.vacevent.users);
   }
 
 }

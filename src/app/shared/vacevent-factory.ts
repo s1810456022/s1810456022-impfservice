@@ -2,7 +2,7 @@
 import { Vacevent } from './vacevent';
 export class VaceventFactory {
  static empty(): Vacevent {
-   return new Vacevent(null,new Date(),new Date(),new Date(), 0, 0, [{id: 0, firstName: '', lastName: '', admin: false, gender: '', dateOfBirth: new Date(), svnr: 0, phoneNr: 0, street: '', houseNumber: '', postalCode: 0, city: '', vacStatus: false, email: '', password: '', vacevent_id: 0}]);
+   return new Vacevent(null,new Date(),new Date(),new Date(), 0, 0, {id: 0, name: '', street: '', houseNumber: '', postalCode: 0, city: '', state: '' }, [{id: 0, firstName: '', lastName: '', admin: false, gender: '', dateOfBirth: new Date(), svnr: 0, phoneNr: 0, street: '', houseNumber: '', postalCode: 0, city: '', vacStatus: false, email: '', password: '', vacevent_id: 0}]);
  }
  static fromObject(rawVacevent: any): Vacevent {
    return new Vacevent(
@@ -15,6 +15,7 @@ export class VaceventFactory {
        new Date(rawVacevent.endTime) : rawVacevent.endTime,
      rawVacevent.maxVac,
      rawVacevent.vaclocation_id,
+     rawVacevent.vaclocation,
      rawVacevent.users,
    );
  }
