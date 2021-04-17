@@ -41,7 +41,8 @@
   </ul>
 </div>
 <!--No vacevents-->
-<div *ngIf="vacevents && !vacevents.length" class>
+<div *ngIf="vacevents && !vacevents.length" class="ui vertical segment">
+  <h3>{{state}}</h3>
   <div class="ui red icon message">
     <i class="x icon"></i>
     <div class="content">
