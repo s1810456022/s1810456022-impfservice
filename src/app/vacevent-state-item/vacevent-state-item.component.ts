@@ -7,10 +7,15 @@ import { Vacevent } from '../shared/vacevent';
 })
 export class VaceventStateItemComponent implements OnInit {
   @Input() vacevent:Vacevent;
+  tooMuch:boolean = false;
+
 
   constructor() { }
 
   ngOnInit() {
+    if(this.vacevent.userAmount >= this.vacevent.maxVac){
+      this.tooMuch = true;
+    }
   }
 
 }

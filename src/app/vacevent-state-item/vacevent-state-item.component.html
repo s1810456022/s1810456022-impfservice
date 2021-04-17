@@ -1,12 +1,15 @@
-<div class="content">
+
+
   <br>
-  <div class="header left floated">
+  <div class="left floated content">
     {{vacevent?.date | date:'dd.MM.yyyy'}}
   </div>
-  <div class="ui left floated secondary segment">
-    <p><i class="clock outline icon"></i>{{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}<i class="map marker alternate icon"></i><b>Stadt:</b> {{ vacevent?.vaclocation.city }}, <b>Standort:</b> {{ vacevent?.vaclocation.name }}</p>
+  <div class="left floated content">
+    <p><i class="clock outline icon"></i>{{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}} <i class="map marker alternate icon"></i><b>Stadt:</b> {{ vacevent?.vaclocation.city }}, <b>Standort:</b> {{ vacevent?.vaclocation.name }}</p>
   </div>
   <div class="right floated content">
-      <div class="ui button">Termin buchen</div>
+      <div *ngIf="!tooMuch" class="ui red button">Termin buchen</div>
+      <div *ngIf="tooMuch" class="ui disabled button">Termin buchen</div>
+      <br><br>
   </div>
-</div>
+

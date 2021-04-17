@@ -10,5 +10,6 @@ export class Vacevent {
   public maxVac:number,
   public vaclocation_id: number,
   public vaclocation: Vaclocation,
+  public userAmount: number,
   public users?:User[]) {}
 }
