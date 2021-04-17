@@ -34,11 +34,15 @@
   </div>
 </div>
 <!-- List of Vacevents -->
-<div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
-  <ul>
-    <li *ngFor="let vacevent of vacevents" class="item vac-vacevent-state-item" [vacevent]="vacevent">
-    </li>
-  </ul>
+<div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
+  <div *ngFor="let vacevent of vacevents"  class="item">
+    <div class="right floated content">
+      <div class="ui button">Termin buchen</div>
+    </div>
+    <div class="content">
+      <span class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
+    </div>
+  </div>
 </div>
 <!--No vacevents-->
 <div *ngIf="vacevents && !vacevents.length" class="ui vertical segment">
