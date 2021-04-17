@@ -4,18 +4,15 @@ import { Vacevent } from '../shared/vacevent';
 import { VaceventService } from '../shared/vacevent.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'vac-home',
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
-  vacevents:Vacevent[];
-
-  constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
+  constructor() { }
 
   ngOnInit() {
-    const params = this.route.snapshot.params;
-    this.vac.getByState(params['state']).subscribe(res => this.vacevents = res);
+    
   }
 
 }

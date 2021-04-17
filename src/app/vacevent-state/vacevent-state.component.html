@@ -1,10 +1,31 @@
-<div class="ui middle aligned selection divided list">
+<div class="ui vertical stripe segment">
+  <h2>Anmeldung zur Corona-Impfung</h2>
+  <p>Wählen Sie einen Impftermin aus. Sie können sich nur anmelden, wenn Sie eingeloggt sind.</p>
+</div>
+<div class="ui vertical strip segment">
+  <div class="ui middle aligned grid container">
+    <div class="three wide column">
+      <p class="ui">{{state}}</p>
+    </div>
+    <div class="three wide column">
+      <p class="floated">Stadt</p>
+      <select class="floated">
+          <option value="">one</option>
+          <option value="">two</option>
+        </select>
+    </div>
+    <div class="three wide column">
+      <p>Standort</p>
+      <select>
+          <option value="">one</option>
+          <option value="">two</option>
+        </select>
+    </div>
+</div>
+<div class="ui vertical strip segment">
   <ul>
     <li *ngFor="let vacevent of vacevents" class="item vac-vacevent-state-item" [vacevent]="vacevent">
     </li>
   </ul>
-  <!--<div *ngIf="!vacevents" class="ui active dimmer">
-    <div class="ui large text loader">Daten werden geladen</div>
-  </div>
-  <p *ngIf="vacevents && !vacevents.length">Es wurden noch keine Impftermine am Server eingetragen</p>-->
 </div>
+  <p *ngIf="vacevents && !vacevents.length">Es gibt zur Zeit noch keien Impftermine für dieses Bundesland.</p>

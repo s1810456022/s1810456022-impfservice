@@ -10,6 +10,7 @@ import { VaceventService } from '../shared/vacevent.service';
 export class VaceventStateComponent implements OnInit {
 
   vacevents:Vacevent[];
+  state:string = "";
 
   @Output() showDetailsEvent = new EventEmitter<Vacevent>();
 
@@ -17,7 +18,9 @@ export class VaceventStateComponent implements OnInit {
 
   ngOnInit() {
     const params = this.route.snapshot.params;
+    let state1 = params['state'];
     this.vac.getByState(params['state']).subscribe(res => this.vacevents = res);
+    this.state = state1;
   }
 
 }
