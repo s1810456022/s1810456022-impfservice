@@ -1,5 +1,3 @@
 <div class="content">
-  <div class="header">{{vacevent?.id}}</div>
-  <div class="description">{{vacevent?.date}}</div>
-  <div class="extra">ORT {{ vacevent?.vaclocation_id }}</div>
+  <div class="header">{{vacevent?.date | date:'dd.MM.yyyy'}} | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}, Standort: {{ vacevent?.vaclocation_id }}</div>
 </div>
