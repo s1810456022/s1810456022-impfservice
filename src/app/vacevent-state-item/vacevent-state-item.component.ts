@@ -8,7 +8,8 @@ import { Vacevent } from '../shared/vacevent';
 export class VaceventStateItemComponent implements OnInit {
   @Input() vacevent:Vacevent;
   tooMuch:boolean = false;
-
+  
+  admin:boolean = true;
 
   constructor() { }
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventService } from '../shared/vacevent.service';
@@ -11,6 +11,8 @@ export class VaceventStateComponent implements OnInit {
 
   vacevents:Vacevent[];
   state:string = "";
+
+  admin:boolean = true;
 
   @Output() showDetailsEvent = new EventEmitter<Vacevent>();
 

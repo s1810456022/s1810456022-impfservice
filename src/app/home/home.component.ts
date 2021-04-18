@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventService } from '../shared/vacevent.service';
@@ -8,6 +8,8 @@ import { VaceventService } from '../shared/vacevent.service';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
+
+  admin:boolean = true;
 
   constructor() { }
 
