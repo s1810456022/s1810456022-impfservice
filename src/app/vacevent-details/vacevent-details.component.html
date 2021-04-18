@@ -15,14 +15,21 @@
   <div class="item" >
     <div class="content">
       <div class="ui segment">
+        <button class="ui right floated icon button">
+          <i class="trash alternate outline icon"></i>
+        </button>
+        <button class="ui right floated icon button">
+          <i class="edit outline icon"></i>
+        </button>
         <p><b>Bundesland:</b> {{vacevent?.vaclocation.state}}</p>
         <p><b>Impfort:</b> {{vacevent?.vaclocation.city}}</p>
         <p><b>Maximale Teilnehmer*innenzahl:</b> {{vacevent?.maxVac}}</p>
-        <p><b>Angemeldete Teilnehmer*innen:</b></p>
         <div *ngIf="vacevent && !vacevent.users.length; else elseBlock">
           <p><b>Angemeldete Teilnehmer*innen:</b> Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
         </div>
         <ng-template #elseBlock>
+          <br>
+          <p><b>Angemeldete Teilnehmer*innen:</b></p>
           <div *ngFor="let user of vacevent.users">
             <div class="ui form">
               <div class="inline fields">
