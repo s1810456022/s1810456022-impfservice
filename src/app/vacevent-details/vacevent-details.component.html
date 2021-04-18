@@ -23,7 +23,19 @@
           <p><b>Angemeldete Teilnehmer*innen:</b> Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
         </div>
         <ng-template #elseBlock>
-          <p *ngFor="let user of vacevent.users">{{user.firstName}}</p>
+          <div *ngFor="let user of vacevent.users">
+            <div class="ui form">
+              <div class="inline fields">
+                <div class="three wide field">
+                  <label>{{user.firstName}}</label>
+                  <select class="floated">
+                    <option value="false">nicht geimpft</option>
+                    <option value="true">geimpft</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
         </ng-template>
       </div>
     </div>
