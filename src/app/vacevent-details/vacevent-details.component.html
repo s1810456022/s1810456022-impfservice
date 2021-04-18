@@ -4,7 +4,7 @@
     <p>Verwalten Sie den ausgewählten Impftermin. Hacken Sie geimpfte Teilnehmer*innen ab, bearbeiten Sie den Termin oder löschen Sie ihn.</p>
 </div>
 <br>
-<button routerLink=".." class="ui red button tiny">Zurück zur Übersicht</button>
+<button [routerLink]="['../../vaccinationevents/', vacevent.vaclocation.state]" class="ui red button tiny">Zurück zur Übersicht</button>
 <!--VaceventDetails-->
 <div class="ui items">
   <div class="item">
@@ -16,7 +16,7 @@
     <div class="content">
       <div class="ui segment">
         <button class="ui right floated icon button">
-          <i class="trash alternate outline icon"></i>
+          <i class="trash alternate outline icon" (click)="removeVacevent()"></i>
         </button>
         <button class="ui right floated icon button">
           <i class="edit outline icon"></i>

@@ -10,6 +10,7 @@ import { VaceventService } from '../shared/vacevent.service';
 })
 export class VaceventDetailsComponent implements OnInit {
   vacevent:Vacevent = VaceventFactory.empty();
+  id:bigint;
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
 
@@ -17,6 +18,17 @@ export class VaceventDetailsComponent implements OnInit {
     const params = this.route.snapshot.params;
     this.vac.getSingle(params['id']).subscribe(res => this.vacevent = res);
     console.log(this.vacevent);
+  }
+
+  removeVacevent(){
+    
+    if(confirm("Wollen Sie den Impftermin wirklich löschen?")){
+      this.vac.remove(this.vacevent.id).subscribe(
+          res => {
+            this.router.navigate(['../../'], {relativeTo:this.route});
+          }
+      );
+    }
   }
 
 }
