@@ -20,7 +20,7 @@ export class VaceventDetailsComponent implements OnInit {
     console.log(this.vacevent);
   }
 
-  removeVacevent(){
+  removeVacevent(){ 
     
     if(confirm("Wollen Sie den Impftermin wirklich löschen?")){
       this.vac.remove(this.vacevent.id).subscribe(
