@@ -11,6 +11,8 @@ export class VaceventStateItemComponent implements OnInit {
   
   admin:boolean = true;
 
+  
+
   constructor() { }
 
   ngOnInit() {

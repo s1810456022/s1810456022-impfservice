@@ -8,7 +8,7 @@
     <h2>Impftermine verwalten</h2>
     <p>Wählen Sie aus, für welches Bundesland Sie Impftermine verwalten möchten.</p>
   </ng-template>
-  </div>
+</div>
 <!-- Filters for Vacevents -->
 <div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
   <div class="ui middle aligned grid container">
@@ -41,7 +41,7 @@
 </div>
 <!-- List of Vacevents -->
 <div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
-  <div *ngFor="let vacevent of vacevents"  class="item" [vacevent]="vacevent" [routerLink]="vaccinationevent.id">
+  <div *ngFor="let vacevent of vacevents"  class="item" >
     <div class="content">
       <span class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
     </div>

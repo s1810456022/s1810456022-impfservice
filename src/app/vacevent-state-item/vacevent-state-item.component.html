@@ -12,7 +12,7 @@
     <br><br>
   </div>
   <ng-template #elseBlock>
-    <div class="ui red button">Details anzeigen</div>
+    <div [routerLink]="['../../vaccinationevent', vacevent.id]" class="ui red button">Details anzeigen</div>
     <br><br>
   </ng-template>
 </div>
