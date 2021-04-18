@@ -15,12 +15,16 @@
   <div class="item" >
     <div class="content">
       <div class="ui segment">
-        <p>Bundesland: {{vacevent?.vaclocation.state}}</p>
-        <p>Impfort: {{vacevent?.vaclocation.city}}</p>
-        <p>Maximale Teilnehmer*innenzahl: {{vacevent?.maxVac}}</p>
-        <p>Angemeldete Teilnehmer*innen: {{vacevent?.maxVac}}</p>
-        <div>
+        <p><b>Bundesland:</b> {{vacevent?.vaclocation.state}}</p>
+        <p><b>Impfort:</b> {{vacevent?.vaclocation.city}}</p>
+        <p><b>Maximale Teilnehmer*innenzahl:</b> {{vacevent?.maxVac}}</p>
+        <p><b>Angemeldete Teilnehmer*innen:</b></p>
+        <div *ngIf="vacevent && !vacevent.users.length; else elseBlock">
+          <p><b>Angemeldete Teilnehmer*innen:</b> Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
         </div>
+        <ng-template #elseBlock>
+          <p *ngFor="let user of vacevent.users">{{user.firstName}}</p>
+        </ng-template>
       </div>
     </div>
   </div>
