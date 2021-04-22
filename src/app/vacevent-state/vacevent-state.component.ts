@@ -12,7 +12,7 @@ export class VaceventStateComponent implements OnInit {
   vacevents:Vacevent[];
   state:string = "";
 
-  admin:boolean = true;
+  admin:boolean = false;
 
   @Output() showDetailsEvent = new EventEmitter<Vacevent>();
 
