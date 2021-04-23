@@ -9,7 +9,7 @@ import { VaceventService } from '../shared/vacevent.service';
 })
 export class HomeComponent implements OnInit {
 
-  admin:boolean = false;
+  admin:boolean = true;
 
   constructor() { }
 

@@ -12,11 +12,15 @@ export class VaceventStateComponent implements OnInit {
   vacevents:Vacevent[];
   state:string = "";
 
-  admin:boolean = false;
+  admin:boolean = true;
 
   @Output() showDetailsEvent = new EventEmitter<Vacevent>();
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
+
+  showDetails(vacevents:Vacevent){
+    this.showDetailsEvent.emit(vacevents);
+  }
 
   ngOnInit() {
     const params = this.route.snapshot.params;

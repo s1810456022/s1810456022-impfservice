@@ -9,7 +9,7 @@ export class VaceventStateItemComponent implements OnInit {
   @Input() vacevent:Vacevent;
   tooMuch:boolean = false;
   
-  admin:boolean = false;
+  admin:boolean = true;
 
   
 
