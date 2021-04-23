@@ -18,7 +18,7 @@
         <button class="ui right floated icon button">
           <i class="trash alternate outline icon" (click)="removeVacevent()"></i>
         </button>
-        <button class="ui right floated icon button" (click)="edit()">
+        <button class="ui right floated icon button" (click)="showEdit(this.visible=true)">
           <i class="edit outline icon"></i>
         </button>
         <p><b>Bundesland:</b> {{vacevent?.vaclocation.state}}</p>

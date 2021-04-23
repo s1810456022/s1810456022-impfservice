@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventFactory } from '../shared/vacevent-factory';
@@ -11,9 +11,15 @@ import { VaceventService } from '../shared/vacevent.service';
 export class VaceventDetailsComponent implements OnInit {
   @Output() vacevent:Vacevent = VaceventFactory.empty();
   id:bigint;
-  @Output() visible:boolean = false;
+  visible:boolean=false;
+  @Output() showEditEvent = new EventEmitter<boolean>();
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
+
+  showEdit(visible:boolean){
+    console.log(this.visible);
+    this.showEditEvent.emit(visible);
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
@@ -29,10 +35,6 @@ export class VaceventDetailsComponent implements OnInit {
           }
       );
     }
-  }
-
-  edit(){
-    this.visible = true;
   }
 
 }

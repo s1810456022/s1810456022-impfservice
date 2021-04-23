@@ -12,8 +12,8 @@ import { VaceventService } from '../shared/vacevent.service';
 export class VaceventDetailsFormComponent implements OnInit {
 
   @Input() vacevent:Vacevent;
-  id:bigint;
   @Input() visible:boolean;
+   id:bigint;
   vaceventForm: FormGroup;
   isUpdatingVacevent = false;
   errors:{[key:string]:string} = {};
@@ -26,6 +26,7 @@ export class VaceventDetailsFormComponent implements OnInit {
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
+    console.log(this.visible);
     const id = this.route.snapshot.params['id'];
     if(id){
       this.vac.getSingle(id).subscribe(vacevent => {
