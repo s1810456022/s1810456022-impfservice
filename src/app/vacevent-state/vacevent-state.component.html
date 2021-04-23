@@ -43,7 +43,8 @@
 </div>
 <!-- List of Vacevents -->
 <br>
-<button routerLink="../../home" class="ui floated right red button tiny">+ Neuen Termin anlegen</button>
+<button routerLink="../../home" class="ui right floated red button tiny">+ Neuen Termin anlegen</button>
+<br>
 <div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
   <div *ngFor="let vacevent of vacevents"  class="item" >
     <div class="content">
