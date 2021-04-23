@@ -7,19 +7,5 @@ import { Vacevent } from './shared/vacevent';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  listOn=true;
-  detailsOn=false;
-
-  vacevent: Vacevent;
-
-  showList(){
-    this.listOn = true;
-    this.detailsOn = false;
-  }
-
-  showDetails(vacevent:Vacevent){
-    this.vacevent = vacevent;
-    this.listOn = false;
-    this.detailsOn = true;
-  }
+  
 }
