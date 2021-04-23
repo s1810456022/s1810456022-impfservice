@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventFactory } from '../shared/vacevent-factory';
@@ -9,14 +9,15 @@ import { VaceventService } from '../shared/vacevent.service';
   templateUrl: './vacevent-details.component.html'
 })
 export class VaceventDetailsComponent implements OnInit {
-  vacevent:Vacevent = VaceventFactory.empty();
+  @Output() vacevent:Vacevent = VaceventFactory.empty();
   id:bigint;
+  @Output() visible:boolean = false;
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
-    this.vac.getSingle(id).subscribe(vacevent => this.vacevent = vacevent);
+    this.vac.getSingle(id).subscribe(res => this.vacevent = res);
   }
 
   removeVacevent(){ 
@@ -28,6 +29,10 @@ export class VaceventDetailsComponent implements OnInit {
           }
       );
     }
+  }
+
+  edit(){
+    this.visible = true;
   }
 
 }

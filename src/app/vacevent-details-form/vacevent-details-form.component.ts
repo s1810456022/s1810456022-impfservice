@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
@@ -11,8 +11,9 @@ import { VaceventService } from '../shared/vacevent.service';
 })
 export class VaceventDetailsFormComponent implements OnInit {
 
-  vacevent:Vacevent = VaceventFactory.empty();
+  @Input() vacevent:Vacevent;
   id:bigint;
+  @Input() visible:boolean;
   vaceventForm: FormGroup;
   isUpdatingVacevent = false;
   errors:{[key:string]:string} = {};
@@ -38,10 +39,6 @@ export class VaceventDetailsFormComponent implements OnInit {
     this.vaceventForm = this.fb.group({
 
     });
-  }
-
-  showEdit(){
-    document.getElementById("editform").style.display = "visible";
   }
 
   submitForm(){
