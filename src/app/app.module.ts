@@ -11,10 +11,11 @@ import { VaceventStateItemComponent } from './vacevent-state-item/vacevent-state
 import { VaceventListComponent } from './vacevent-list/vacevent-list.component';
 import { VaceventService } from './shared/vacevent.service';
 import { VaceventDetailsComponent } from './vacevent-details/vacevent-details.component';
+import { VaceventDetailsFormComponent } from './vacevent-details-form/vacevent-details-form.component';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule ],
-  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent ],
+  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ UserService, VaceventService]
 })

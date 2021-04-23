@@ -18,7 +18,7 @@
         <button class="ui right floated icon button">
           <i class="trash alternate outline icon" (click)="removeVacevent()"></i>
         </button>
-        <button class="ui right floated icon button">
+        <button class="ui right floated icon button" >
           <i class="edit outline icon"></i>
         </button>
         <p><b>Bundesland:</b> {{vacevent?.vaclocation.state}}</p>
@@ -47,42 +47,6 @@
       </div>
     </div>
   </div>
-  <div class="item">
-    <div class="content">
-      <div class="ui segment">
-        <h3>Termin ändern</h3>
-        <form  class="ui large form" [formGroup]="vaceventForm" (ngSubmit)="submitForm()">
-          <input type="hidden" name="id">
-          <div class="field">
-            <label>Standort</label>
-            <select class="custom-select" formControlName="vaclocation">
-              <option *ngFor="let location of vaclocation" [ngValue]="location.id">{{location.name}} ({{location.address}}, {{location.zipcode}} {{location.city}})</option>
-            </select>
-            <div *ngIf="errors.location" class="ui negative message"> {{ errors.location }} </div>
-          </div>
-          <div class="field">
-            <label>Maximale Teilnehmer*innenanzahl</label>
-            <input formControlName="maxVac">
-            <div *ngIf="errors.maxVac" class="ui negative message"> {{ errors.maxVac }} </div>
-          </div>
-          <div class="field">
-            <label>Datum</label>
-            <input type="date" formControlName="date">
-            <div *ngIf="errors.date" class="ui negative message"> {{ errors.date }} </div>
-          </div>
-          <div class="field">
-            <label>Startzeit</label>
-            <input type="time" formControlName="startTime">
-            <div *ngIf="errors.startTime" class="ui negative message"> {{ errors.startTime }} </div>
-          </div>
-          <div class="field">
-            <label>Endzeit</label>
-            <input type="time" formControlName="endTime">
-            <div *ngIf="errors.endTime" class="ui negative message"> {{ errors.endTime }} </div>
-          </div>
-          <button type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin ändern</button>
-        </form>
-      </div>
-    </div>
-  </div>
+  <!--Change Vacevent-->
+  <div class="vac-vacevent-details-form" [vacevent]="vacevent"></div>
 </div>
