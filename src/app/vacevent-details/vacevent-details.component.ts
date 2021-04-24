@@ -9,17 +9,14 @@ import { VaceventService } from '../shared/vacevent.service';
   templateUrl: './vacevent-details.component.html'
 })
 export class VaceventDetailsComponent implements OnInit {
-  @Output() vacevent:Vacevent = VaceventFactory.empty();
+  vacevent:Vacevent = VaceventFactory.empty();
   id:bigint;
-  visible:boolean=false;
-  @Output() showEditEvent = new EventEmitter<boolean>();
+
+  isFormVisible: boolean = false;
+  selectedStatus: boolean  = false;
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
 
-  showEdit(visible:boolean){
-    console.log(this.visible);
-    this.showEditEvent.emit(visible);
-  }
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
@@ -35,6 +32,11 @@ export class VaceventDetailsComponent implements OnInit {
           }
       );
     }
+  }
+
+  onChange(e: Event){
+    let value = (<HTMLInputElement>e.target).value;
+    console.log(value);
   }
 
 }

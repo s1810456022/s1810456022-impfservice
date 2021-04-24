@@ -18,7 +18,7 @@
         <button class="ui right floated icon button">
           <i class="trash alternate outline icon" (click)="removeVacevent()"></i>
         </button>
-        <button class="ui right floated icon button" (click)="showEdit(this.visible=true)">
+        <button class="ui right floated icon button" (click)="isFormVisible = !isFormVisible">
           <i class="edit outline icon"></i>
         </button>
         <p><b>Bundesland:</b> {{vacevent?.vaclocation.state}}</p>
@@ -35,8 +35,8 @@
               <div class="inline fields">
                 <div class="three wide field">
                   <label>{{user.firstName}}</label>
-                  <select class="floated">
-                    <option value="false">nicht geimpft</option>
+                  <select class="floated" (change)="onChange($event)">
+                    <option value="false" selected>nicht geimpft</option>
                     <option value="true">geimpft</option>
                   </select>
                 </div>
@@ -48,5 +48,6 @@
     </div>
   </div>
   <!--Change Vacevent-->
-  <div class="vac-vacevent-details-form" [vacevent]="vacevent"></div>
+
+  <vac-vacevent-details-form *ngIf="isFormVisible" [vacevent]="vacevent"></vac-vacevent-details-form>
 </div>

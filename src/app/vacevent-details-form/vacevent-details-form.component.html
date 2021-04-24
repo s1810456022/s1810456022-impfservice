@@ -1,4 +1,4 @@
-<div *ngIf="visible" id="editform" class="item">
+<div id="editform" class="item">
     <div class="content">
       <div class="ui segment">
         <h3>Termin ändern</h3>
@@ -13,7 +13,7 @@
           </div>
           <div class="field">
             <label>Maximale Teilnehmer*innenanzahl</label>
-            <input formControlName="maxVac">
+            <input formControlName="maxVac" value="{{vacevent.maxVac}}">
             <div *ngIf="errors.maxVac" class="ui negative message"> {{ errors.maxVac }} </div>
           </div>
           <div class="field">
