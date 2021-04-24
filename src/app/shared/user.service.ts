@@ -13,7 +13,8 @@ export class UserService {
 
   }
 
-  update(user: User):Observable<any>{
+  update(user:User):Observable<any>{
+    console.log(user.id);
     return this.http.put(`${this.api}/vaccinationevents/registration/${user.id}`, user).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }

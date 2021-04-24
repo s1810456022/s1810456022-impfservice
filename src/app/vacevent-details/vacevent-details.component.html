@@ -30,19 +30,19 @@
         <ng-template #elseBlock>
           <br>
           <p><b>Angemeldete Teilnehmer*innen:</b></p>
-          <div *ngFor="let user of vacevent.users">
-            <div class="ui form">
+          <form class="ui form" [formGroup]="userForm">
+            <div *ngFor="let user of vacevent.users">
               <div class="inline fields">
                 <div class="three wide field">
-                  <label>{{user.firstName}}</label>
-                  <select class="floated" (change)="onChange($event)">
-                    <option value="false" selected>nicht geimpft</option>
-                    <option value="true">geimpft</option>
+                  <label>{{user.firstName}} {{user.lastName}}</label>
+                  <select formControlName="vacStatus" class="floated" (change)="onChange($event, user)">
+                    <option value="false" [selected]="!user.vacStatus">nicht geimpft</option>
+                    <option value="true" [selected]="user.vacStatus">geimpft</option>
                   </select>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </ng-template>
       </div>
     </div>

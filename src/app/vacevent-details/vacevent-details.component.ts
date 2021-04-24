@@ -1,5 +1,9 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../shared/user';
+import { UserFactory } from '../shared/user-factory';
+import { UserService } from '../shared/user.service';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventFactory } from '../shared/vacevent-factory';
 import { VaceventService } from '../shared/vacevent.service';
@@ -11,16 +15,23 @@ import { VaceventService } from '../shared/vacevent.service';
 export class VaceventDetailsComponent implements OnInit {
   vacevent:Vacevent = VaceventFactory.empty();
   id:bigint;
-
+  userForm: FormGroup;
+  user:User = UserFactory.empty();
   isFormVisible: boolean = false;
   selectedStatus: boolean  = false;
 
-  constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router) { }
+  constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private use:UserService) { }
 
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
-    this.vac.getSingle(id).subscribe(res => this.vacevent = res);
+    this.vac.getSingle(id).subscribe(vacevent => {
+      this.vacevent = vacevent;
+      //this.initVacevent();
+    });
+    this.userForm = this.fb.group({
+      vacStatus: this.user.vacStatus
+    });
   }
 
   removeVacevent(){ 
@@ -34,9 +45,14 @@ export class VaceventDetailsComponent implements OnInit {
     }
   }
 
-  onChange(e: Event){
+
+
+  onChange(e: Event, user){
     let value = (<HTMLInputElement>e.target).value;
-    console.log(value);
+    console.log(user);
+    this.user = user;
+    this.user.vacStatus = Boolean(JSON.parse(value));;
+    this.use.update(this.user);
   }
 
 }
