@@ -7,6 +7,7 @@ import { UserService } from '../shared/user.service';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventFactory } from '../shared/vacevent-factory';
 import { VaceventService } from '../shared/vacevent.service';
+import { ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'vac-vacevent-details',
@@ -18,9 +19,8 @@ export class VaceventDetailsComponent implements OnInit {
   userForm: FormGroup;
   user:User = UserFactory.empty();
   isFormVisible: boolean = false;
-  selectedStatus: boolean  = false;
 
-  constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private use:UserService) { }
+  constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private use:UserService, private toastr:ToastrService) { }
 
 
   ngOnInit() {
@@ -45,14 +45,14 @@ export class VaceventDetailsComponent implements OnInit {
     }
   }
 
-
-
   onChange(e: Event, user){
     let value = (<HTMLInputElement>e.target).value;
     console.log(user);
     this.user = user;
     this.user.vacStatus = Boolean(JSON.parse(value));;
-    this.use.update(this.user);
+    this.use.update(this.user).subscribe(res =>{
+      this.toastr.success(this.user.lastName, 'Impfstatus erfolgreich geändert');
+    });
   }
 
 }
