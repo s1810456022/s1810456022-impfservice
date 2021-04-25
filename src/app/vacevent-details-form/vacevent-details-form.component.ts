@@ -7,6 +7,7 @@ import { DatePipe} from '@angular/common';
 import { VaclocationService } from '../shared/vaclocation.service';
 import { Vaclocation } from '../shared/vaclocation';
 import { VaceventFactory } from '../shared/vacevent-factory';
+import { ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'vac-vacevent-details-form',
@@ -23,7 +24,7 @@ export class VaceventDetailsFormComponent implements OnInit {
   datePipeEnd: string;
   vaclocation: Vaclocation[];
 
-  constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private datePipe: DatePipe, private vacloc: VaclocationService) {
+  constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private datePipe: DatePipe, private vacloc: VaclocationService, private toastr:ToastrService) {
    }
 
   ngOnInit() {
@@ -66,7 +67,7 @@ export class VaceventDetailsFormComponent implements OnInit {
 
     if(this.isUpdatingVacevent){
       this.vac.update(updatedVacevent).subscribe(res => {
-        this.router.navigate(["../../home"],{relativeTo:this.route});
+        this.toastr.success('Erfolgreich!', 'Impftermin erfolgreich geändert');
       }, (err)=>{
         //TODO sinvolle Fehlermeldung, von der Rest api auch fehlermessage schicken lassen
       });
