@@ -14,11 +14,13 @@ import { VaceventDetailsComponent } from './vacevent-details/vacevent-details.co
 import { VaceventDetailsFormComponent } from './vacevent-details-form/vacevent-details-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
+import { DatePipe} from '@angular/common';
+import { VaclocationService } from './shared/vaclocation.service';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot() ],
   declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ UserService, VaceventService]
+  providers:    [ UserService, VaceventService, DatePipe, VaclocationService]
 })
 export class AppModule { }

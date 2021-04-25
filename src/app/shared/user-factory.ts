@@ -1,5 +1,4 @@
 import { User } from './user';
-import { Vacevent } from './vacevent';
 export class UserFactory {
  static empty(): User {
    return new User(null, '', '', false, '', new Date(), 0, 0, '', '', 0, '', false, '', '', 0);

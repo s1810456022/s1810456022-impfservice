@@ -19,7 +19,7 @@ export class VaceventDetailsComponent implements OnInit {
   userForm: FormGroup;
   user:User = UserFactory.empty();
   isFormVisible: boolean = false;
-
+  
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private use:UserService, private toastr:ToastrService) { }
 
 
@@ -27,7 +27,6 @@ export class VaceventDetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.vac.getSingle(id).subscribe(vacevent => {
       this.vacevent = vacevent;
-      //this.initVacevent();
     });
     this.userForm = this.fb.group({
       vacStatus: this.user.vacStatus

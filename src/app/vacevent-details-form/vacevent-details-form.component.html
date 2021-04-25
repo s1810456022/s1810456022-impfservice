@@ -7,13 +7,13 @@
           <div class="field">
             <label>Standort</label>
             <select class="custom-select" formControlName="vaclocation">
-              <option *ngFor="let location of vaclocation" [ngValue]="location.id">{{location.name}} ({{location.address}}, {{location.zipcode}} {{location.city}})</option>
+              <option *ngFor="let vacl of vaclocation" [ngValue]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
             </select>
             <div *ngIf="errors.location" class="ui negative message"> {{ errors.location }} </div>
           </div>
           <div class="field">
             <label>Maximale Teilnehmer*innenanzahl</label>
-            <input formControlName="maxVac" value="{{vacevent.maxVac}}">
+            <input formControlName="maxVac">
             <div *ngIf="errors.maxVac" class="ui negative message"> {{ errors.maxVac }} </div>
           </div>
           <div class="field">
