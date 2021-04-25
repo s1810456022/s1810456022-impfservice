@@ -10,7 +10,7 @@
   </ng-template>
 </div>
 <br>
-<button routerLink="../../home" class="ui red button tiny">Zurück zur Übersicht</button>
+<button routerLink="../../home" class="ui red button tiny">Zurück zur Übersicht</button><br><br>
 <!-- Filters for Vacevents -->
 <div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
   <div class="ui middle aligned grid container">
@@ -19,11 +19,11 @@
         <p>{{state}}</p>
       </div>
     </div>
-    <form class="ui form" [formGroup]="vaclocationForm">
+    <form class="ui form" *ngIf="vaclocation.length>1" [formGroup]="vaclocationForm">
         <div class="inline field">
           <label>Standort</label>
           <select class="custom-select" formControlName="vaclocations" (change)="onChange($event)">
-            <option value="" [selected] = "selected" disabled>Wählen Sie den gewünschten Impfort aus</option>
+            <option value="0" [selected] = "selected">alle</option>
             <option *ngFor="let vacl of vaclocation" [value]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
           </select>
         </div>
@@ -35,9 +35,9 @@
 <button routerLink="../../home" class="ui right floated red button tiny">+ Neuen Termin anlegen</button>
 <br>
 <div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
-  <div *ngFor="let vacevent of vacevents"  class="item" >
+  <div *ngFor="let vacevent of vacevents" class="item" >
     <div class="content">
-      <span class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
+      <span *ngIf="vacevent.vaclocation.id == vaclocation_id_filtered || vaclocation_id_filtered == 0" class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
     </div>
   </div>
 </div>

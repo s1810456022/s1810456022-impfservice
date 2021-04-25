@@ -19,6 +19,7 @@ export class VaceventStateComponent implements OnInit {
   vaclocationForm: FormGroup;
   vaclocation:Vaclocation[];
   selected:boolean = true;
+  vaclocation_id_filtered:number = 0;
 
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router, private vacloc:VaclocationService, private fb:FormBuilder) { }
@@ -46,6 +47,10 @@ export class VaceventStateComponent implements OnInit {
   onChange(e: Event){
     let value = (<HTMLInputElement>e.target).value;
     console.log(value);
+    if(value != "0")
+      this.vaclocation_id_filtered = Number(value);
+    else
+      this.vaclocation_id_filtered = 0;
     
   }
 
