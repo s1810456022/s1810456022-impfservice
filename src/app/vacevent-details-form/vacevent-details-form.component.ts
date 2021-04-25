@@ -25,6 +25,7 @@ export class VaceventDetailsFormComponent implements OnInit {
   datePipeEnd: string;
   vaclocation: Vaclocation[];
   vaceventNew: Vacevent = VaceventFactory.empty();
+  state: string = "";
 
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private datePipe: DatePipe, private vacloc: VaclocationService, private toastr:ToastrService) {
    }
@@ -32,19 +33,19 @@ export class VaceventDetailsFormComponent implements OnInit {
   ngOnInit() {
     
     const id = this.route.snapshot.params['id'];
-    const state = this.route.snapshot.params['state'];
+    this.state = this.route.snapshot.params['state'];
     if(id !== undefined){
       this.isUpdatingVacevent = true;
       this.vac.getSingle(id).subscribe(vacevent => {
         this.vacevent = vacevent;
         this.initVacevent(false);
       });
-      this.vacloc.getLocationByState(state).subscribe(vaclocation => {
+      this.vacloc.getLocationByState(this.state).subscribe(vaclocation => {
         this.vaclocation = vaclocation;
         this.initVacevent(false);
       });
     } else {
-      this.vacloc.getLocationByState(state).subscribe(vaclocation => {
+      this.vacloc.getLocationByState(this.state).subscribe(vaclocation => {
         this.vaclocation = vaclocation;
         this.initVacevent(true);
       });
