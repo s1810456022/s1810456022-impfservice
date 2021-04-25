@@ -17,10 +17,11 @@ import {ToastrModule} from "ngx-toastr";
 import { DatePipe} from '@angular/common';
 import { VaclocationService } from './shared/vaclocation.service';
 import {MomentModule} from 'ngx-moment';
+import { VaceventNewComponent } from './vacevent-new/vacevent-new.component';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot(), MomentModule ],
-  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent ],
+  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent, VaceventNewComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ UserService, VaceventService, DatePipe, VaclocationService]
 })

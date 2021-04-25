@@ -52,6 +52,8 @@ export class VaceventDetailsComponent implements OnInit {
     this.use.update(this.user).subscribe(res =>{
       this.toastr.success(this.user.lastName, 'Impfstatus erfolgreich geändert');
     });
+
+    console.log(this.vacevent);
   }
 
 }

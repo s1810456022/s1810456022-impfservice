@@ -32,7 +32,7 @@
 </div>
 <!-- List of Vacevents -->
 <br>
-<button routerLink="../../home" class="ui right floated red button tiny">+ Neuen Termin anlegen</button>
+<div [routerLink]="['./new']" class="ui right floated red button tiny">+ Neuen Termin anlege</div>
 <br>
 <div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
   <div *ngFor="let vacevent of vacevents" class="item" >
