@@ -24,6 +24,7 @@ export class VaceventDetailsFormComponent implements OnInit {
   datePipeStart: string;
   datePipeEnd: string;
   vaclocation: Vaclocation[];
+  vaceventNew: Vacevent = VaceventFactory.empty();
 
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private datePipe: DatePipe, private vacloc: VaclocationService, private toastr:ToastrService) {
    }
@@ -32,34 +33,56 @@ export class VaceventDetailsFormComponent implements OnInit {
     
     const id = this.route.snapshot.params['id'];
     const state = this.route.snapshot.params['state'];
-    console.log(state);
-    if(id){
+    console.log(id);
+    if(id !== undefined){
       this.isUpdatingVacevent = true;
       this.vac.getSingle(id).subscribe(vacevent => {
         this.vacevent = vacevent;
-        this.initVacevent();
+        this.initVacevent(false);
+      });
+      this.vacloc.getLocationByState(state).subscribe(vaclocation => {
+        this.vaclocation = vaclocation;
+        this.initVacevent(false);
+      });
+    } else {
+      this.vacloc.getLocationByState(state).subscribe(vaclocation => {
+        this.vaclocation = vaclocation;
+        this.initVacevent(true);
       });
     }
-    this.vacloc.getLocationByState(state).subscribe(vaclocation => {
-        this.vaclocation = vaclocation;
-        this.initVacevent();
-      });
-    this.initVacevent();
+    
+    this.initVacevent(true);
   }
 
-  initVacevent(){
-    this.datePipeStart = this.datePipe.transform(this.vacevent.startTime, 'HH:mm');
-    this.datePipeEnd = this.datePipe.transform(this.vacevent.endTime, 'HH:mm');
- 
-    this.vaceventForm = this.fb.group({
-        id: this.vacevent.id,
-        vaclocation_id: this.vacevent.vaclocation_id,
-        maxVac: this.vacevent.maxVac,
-        date: this.vacevent.date,
-        startTime: this.datePipeStart,
-        endTime: this.datePipeEnd,
+  initVacevent(isNew:boolean){
+    if(!isNew){
+      this.datePipeStart = this.datePipe.transform(this.vacevent.startTime, 'HH:mm');
+      this.datePipeEnd = this.datePipe.transform(this.vacevent.endTime, 'HH:mm');
+  
+      this.vaceventForm = this.fb.group({
+          id: this.vacevent.id,
+          vaclocation_id: this.vacevent.vaclocation_id,
+          maxVac: this.vacevent.maxVac,
+          date: this.vacevent.date,
+          startTime: this.datePipeStart,
+          endTime: this.datePipeEnd,
 
-    });
+      });
+    } else {
+      this.datePipeStart = this.datePipe.transform(this.vaceventNew.startTime, 'HH:mm');
+      this.datePipeEnd = this.datePipe.transform(this.vaceventNew.endTime, 'HH:mm');
+  
+      this.vaceventForm = this.fb.group({
+          id: this.vaceventNew.id,
+          vaclocation_id: this.vaceventNew.vaclocation_id,
+          maxVac: this.vaceventNew.maxVac,
+          date: this.vaceventNew.date,
+          startTime: this.datePipeStart,
+          endTime: this.datePipeEnd,
+
+      });
+    }
+    
   }
 
   submitForm(){
