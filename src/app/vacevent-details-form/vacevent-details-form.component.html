@@ -7,7 +7,7 @@
           <div class="field">
             <label>Standort</label>
             <select class="custom-select" formControlName="vaclocation">
-              <option *ngFor="let vacl of vaclocation" [ngValue]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
+              <option *ngFor="let vacl of vaclocation" [ngValue]="vacl.id" [selected]="selected">{{vacl.name}}, {{vacl.city}}</option>
             </select>
             <div *ngIf="errors.location" class="ui negative message"> {{ errors.location }} </div>
           </div>
