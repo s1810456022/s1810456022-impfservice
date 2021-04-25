@@ -92,13 +92,13 @@ export class VaceventDetailsFormComponent implements OnInit {
     const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
     updatedVacevent.startTime = startTimeNew; 
     updatedVacevent.endTime = endTimeNew; 
+    this.vacloc.getLocationById(this.vaceventForm.value.vaclocation_id).subscribe(res  => {updatedVacevent.vaclocation = res;});
 
-    updatedVacevent.users = this.vacevent.users;
-
-    this.vacloc.getLocationById(this.vaceventForm.value.vaclocation_id).subscribe(res => {
-      updatedVacevent.vaclocation = res;
-    });
-
+    if(this.isUpdatingVacevent)
+      updatedVacevent.users = this.vacevent.users;
+    else 
+      updatedVacevent.users = [];
+    
     if(this.isUpdatingVacevent){
       this.vac.update(updatedVacevent).subscribe(res => {
         this.toastr.success('Erfolgreich!', 'Impftermin erfolgreich geändert');
@@ -107,7 +107,7 @@ export class VaceventDetailsFormComponent implements OnInit {
       });
     } else {
       this.vac.create(updatedVacevent).subscribe(res => {
-        this.router.navigate(["../home"],{relativeTo:this.route});
+        this.router.navigate(["../../"],{relativeTo:this.route});
       });
     }
   }
