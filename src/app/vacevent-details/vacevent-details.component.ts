@@ -38,7 +38,7 @@ export class VaceventDetailsComponent implements OnInit {
     if(confirm("Wollen Sie den Impftermin wirklich löschen?")){
       this.vac.remove(this.vacevent.id).subscribe(
           res => {
-            this.router.navigate(['../../vaccinationevents/', this.vacevent.vaclocation.state], {relativeTo:this.route});
+            this.router.navigate(['../'], {relativeTo:this.route});
           }
       );
     }

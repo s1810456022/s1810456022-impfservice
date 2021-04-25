@@ -22,7 +22,7 @@ export class VaceventStateComponent implements OnInit {
   vaclocation_id_filtered:number = 0;
 
 
-  constructor(private vac:VaceventService, private route:ActivatedRoute, private router:Router, private vacloc:VaclocationService, private fb:FormBuilder) { }
+  constructor(private vac:VaceventService, private route:ActivatedRoute, private vacloc:VaclocationService, private fb:FormBuilder) { }
 
 
   ngOnInit() {
@@ -34,6 +34,7 @@ export class VaceventStateComponent implements OnInit {
     this.vacloc.getLocationByState(state1).subscribe(vaclocation => {
         this.vaclocation = vaclocation;
         this.initVaclocationsSelect();
+        console.log(this.vaclocation);
       });
     this.initVaclocationsSelect();
   }
