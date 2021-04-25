@@ -19,6 +19,12 @@ export class VaclocationService {
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
+  getLocationById(id:number):Observable<Vaclocation>{
+    console.log(id);
+    return this.http.get<Vaclocation>(`${this.api}/vaccinationlocation/${id}`).
+      pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
+
   private errorHandler(error:Error | any){
     return throwError(error);
   }

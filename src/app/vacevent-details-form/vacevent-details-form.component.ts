@@ -8,6 +8,7 @@ import { VaclocationService } from '../shared/vaclocation.service';
 import { Vaclocation } from '../shared/vaclocation';
 import { VaceventFactory } from '../shared/vacevent-factory';
 import { ToastrService} from "ngx-toastr";
+import moment from 'moment';
 
 @Component({
   selector: 'vac-vacevent-details-form',
@@ -23,7 +24,6 @@ export class VaceventDetailsFormComponent implements OnInit {
   datePipeStart: string;
   datePipeEnd: string;
   vaclocation: Vaclocation[];
-  selected:false;
 
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private datePipe: DatePipe, private vacloc: VaclocationService, private toastr:ToastrService) {
    }
@@ -38,14 +38,9 @@ export class VaceventDetailsFormComponent implements OnInit {
         this.initVacevent();
       });
 
-      console.log(this.vacevent.vaclocation.state);
-
       this.vacloc.getLocationByState(this.vacevent.vaclocation.state).subscribe(vaclocation => {
         this.vaclocation = vaclocation;
-        this.initVacevent(this.vacevent.vaclocation.id);
-        for(let vacloc of this.vaclocation){
-      console.log(vacloc);
-    }
+        this.initVacevent();
       });
     }
     this.initVacevent();
@@ -54,10 +49,10 @@ export class VaceventDetailsFormComponent implements OnInit {
   initVacevent(){
     this.datePipeStart = this.datePipe.transform(this.vacevent.startTime, 'HH:mm');
     this.datePipeEnd = this.datePipe.transform(this.vacevent.endTime, 'HH:mm');
-    console.log(this.vacevent.vaclocation.name);
+ 
     this.vaceventForm = this.fb.group({
         id: this.vacevent.id,
-        vaclocation: this.vacevent.vaclocation.name,
+        vaclocation_id: this.vacevent.vaclocation_id,
         maxVac: this.vacevent.maxVac,
         date: this.vacevent.date,
         startTime: this.datePipeStart,
@@ -68,7 +63,17 @@ export class VaceventDetailsFormComponent implements OnInit {
 
   submitForm(){
     const updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
-    console.log(updatedVacevent);
+
+    const startTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
+    const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
+    updatedVacevent.startTime = startTimeNew; 
+    updatedVacevent.endTime = endTimeNew; 
+
+    updatedVacevent.users = this.vacevent.users;
+
+    this.vacloc.getLocationById(this.vaceventForm.value.vaclocation_id).subscribe(res => {
+      updatedVacevent.vaclocation = res;
+    });
 
     if(this.isUpdatingVacevent){
       this.vac.update(updatedVacevent).subscribe(res => {
