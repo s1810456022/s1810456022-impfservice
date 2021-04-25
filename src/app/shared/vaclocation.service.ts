@@ -14,7 +14,6 @@ export class VaclocationService {
   }
 
   getLocationByState(state:string):Observable<Array<Vaclocation>>{
-    console.log(state);
     return this.http.get<Array<Vaclocation>>(`${this.api}/vaccinationlocations/${state}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }

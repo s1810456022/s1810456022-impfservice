@@ -31,18 +31,19 @@ export class VaceventDetailsFormComponent implements OnInit {
   ngOnInit() {
     
     const id = this.route.snapshot.params['id'];
+    const state = this.route.snapshot.params['state'];
+    console.log(state);
     if(id){
       this.isUpdatingVacevent = true;
       this.vac.getSingle(id).subscribe(vacevent => {
         this.vacevent = vacevent;
         this.initVacevent();
       });
-
-      this.vacloc.getLocationByState(this.vacevent.vaclocation.state).subscribe(vaclocation => {
+    }
+    this.vacloc.getLocationByState(state).subscribe(vaclocation => {
         this.vaclocation = vaclocation;
         this.initVacevent();
       });
-    }
     this.initVacevent();
   }
 
