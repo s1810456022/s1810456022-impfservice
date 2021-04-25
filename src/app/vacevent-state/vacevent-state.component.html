@@ -19,17 +19,15 @@
         <p>{{state}}</p>
       </div>
     </div>
-    <div class="ui form">
-      <div class="inline fields">
-        <div class="field">
+    <form class="ui form" [formGroup]="vaclocationForm">
+        <div class="inline field">
           <label>Standort</label>
-          <select class="floated">
-            <option value="">one</option>
-            <option value="">two</option>
+          <select class="custom-select" formControlName="vaclocations" (change)="onChange($event)">
+            <option value="" [selected] = "selected" disabled>Wählen Sie den gewünschten Impfort aus</option>
+            <option *ngFor="let vacl of vaclocation" [value]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
           </select>
         </div>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 <!-- List of Vacevents -->
