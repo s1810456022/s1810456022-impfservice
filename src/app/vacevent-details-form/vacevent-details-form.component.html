@@ -1,5 +1,6 @@
 <div id="editform" class="item">
     <div class="content">
+      <button *ngIf="!isUpdatingVacevent" [routerLink]="['../../']" class="ui red button tiny">Zurück zur Übersicht</button>
       <div class="ui segment">
         <h3 *ngIf="isUpdatingVacevent; else elseBlock" >Termin ändern</h3>
         <ng-template #elseBlock>
@@ -16,7 +17,7 @@
             <select class="custom-select" formControlName="vaclocation_id">
               <option *ngFor="let vacl of vaclocation" [value]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
             </select>
-            <div *ngIf="errors.location" class="ui negative message"> {{ errors.location }} </div>
+            <div *ngIf="errors.vaclocation_id" class="ui negative message"> {{ errors.vaclocation_id }} </div>
           </div>
           <div class="field">
             <label>Maximale Teilnehmer*innenanzahl</label>

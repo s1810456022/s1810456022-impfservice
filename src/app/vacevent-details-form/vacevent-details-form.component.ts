@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventService } from '../shared/vacevent.service';
@@ -8,6 +8,7 @@ import { VaclocationService } from '../shared/vaclocation.service';
 import { Vaclocation } from '../shared/vaclocation';
 import { VaceventFactory } from '../shared/vacevent-factory';
 import { ToastrService} from "ngx-toastr";
+import { VaceventDetailsFormErrorMessages } from "./vacevent-details-form-error-messages";
 import moment from 'moment';
 
 @Component({
@@ -60,11 +61,11 @@ export class VaceventDetailsFormComponent implements OnInit {
   
       this.vaceventForm = this.fb.group({
           id: this.vacevent.id,
-          vaclocation_id: this.vacevent.vaclocation_id,
-          maxVac: this.vacevent.maxVac,
-          date: this.vacevent.date,
-          startTime: this.datePipeStart,
-          endTime: this.datePipeEnd,
+          vaclocation_id: [this.vacevent.vaclocation_id, Validators.required],
+          maxVac: [this.vacevent.maxVac, Validators.required],
+          date: [this.vacevent.date, Validators.required],
+          startTime: [this.datePipeStart, Validators.required],
+          endTime: [this.datePipeEnd, Validators.required],
 
       });
     } else {
@@ -81,11 +82,23 @@ export class VaceventDetailsFormComponent implements OnInit {
 
       });
     }
-    
+    this.vaceventForm.statusChanges.subscribe(()=>{
+      this.updateErrorMessages();
+    });
+  }
+
+  updateErrorMessages(){
+    this.errors = {};
+    for(const message of VaceventDetailsFormErrorMessages){
+      const control = this.vaceventForm.get(message.forControl);
+      if(control && control.dirty && control.invalid && control.errors[message.forValidator] && !this.errors[message.forControl]){
+        this.errors[message.forControl] = message.text;
+      }
+    }
   }
 
   submitForm(){
-    const updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
+    let updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
 
     const startTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
     const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
@@ -101,6 +114,7 @@ export class VaceventDetailsFormComponent implements OnInit {
     if(this.isUpdatingVacevent){
       this.vac.update(updatedVacevent).subscribe(res => {
         this.toastr.success('Erfolgreich!', 'Impftermin erfolgreich geändert');
+        
       }, (err)=>{
         //TODO sinvolle Fehlermeldung, von der Rest api auch fehlermessage schicken lassen
       });
