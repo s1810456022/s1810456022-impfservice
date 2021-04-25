@@ -51,7 +51,6 @@ export class VaceventDetailsFormComponent implements OnInit {
         this.initVacevent(true);
       });
     }
-    this.initVacevent(true);
   }
 
   initVacevent(isNew:boolean){
@@ -89,6 +88,7 @@ export class VaceventDetailsFormComponent implements OnInit {
 
   updateErrorMessages(){
     this.errors = {};
+    console.log("error");
     for(const message of VaceventDetailsFormErrorMessages){
       const control = this.vaceventForm.get(message.forControl);
       if(control && control.dirty && control.invalid && control.errors[message.forValidator] && !this.errors[message.forControl]){
