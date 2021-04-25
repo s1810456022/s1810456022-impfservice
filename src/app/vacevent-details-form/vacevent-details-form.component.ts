@@ -33,7 +33,6 @@ export class VaceventDetailsFormComponent implements OnInit {
     
     const id = this.route.snapshot.params['id'];
     const state = this.route.snapshot.params['state'];
-    console.log(id);
     if(id !== undefined){
       this.isUpdatingVacevent = true;
       this.vac.getSingle(id).subscribe(vacevent => {
@@ -50,7 +49,6 @@ export class VaceventDetailsFormComponent implements OnInit {
         this.initVacevent(true);
       });
     }
-    
     this.initVacevent(true);
   }
 
