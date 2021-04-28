@@ -11,7 +11,7 @@ import { VaceventService } from './shared/vacevent.service';
 })
 export class AppComponent {
 
-  admin:boolean = false;
+  admin:string = "";
   firstName:string = "";
   lastName:string = "";
   vacStatus:string = "";
@@ -26,13 +26,12 @@ export class AppComponent {
   constructor(private authService:AuthenticationService, private vac:VaceventService){}
 
   ngOnInit() {
+    this.admin = localStorage.getItem("admin");
 
-    if(this.isLoggedIn()){
+    if(this.isLoggedIn() && localStorage.getItem("admin")!="1"){
       this.firstName = localStorage.getItem("firstName");
       this.lastName = localStorage.getItem("lastName");
-      if(localStorage.getItem("vacStatus") == "0"){
-        this.vacStatus = "nicht geimpft";
-      }
+      
       if(localStorage.getItem("vacevent_event_id") != "0"){
         this.booked = true;
         this.vac.getSingle(Number(localStorage.getItem("vacevent_id"))).subscribe(vacevent => {

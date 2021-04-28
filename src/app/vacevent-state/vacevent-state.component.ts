@@ -37,7 +37,6 @@ export class VaceventStateComponent implements OnInit {
     this.vacloc.getLocationByState(state1).subscribe(vaclocation => {
         this.vaclocation = vaclocation;
         this.initVaclocationsSelect();
-        console.log(this.vaclocation);
       });
     this.initVaclocationsSelect();
   }
@@ -50,7 +49,6 @@ export class VaceventStateComponent implements OnInit {
 
   onChangeFilter(e: Event){
     let value = (<HTMLInputElement>e.target).value;
-    console.log(value);
     if(value != "0")
       this.vaclocation_id_filtered = Number(value);
     else

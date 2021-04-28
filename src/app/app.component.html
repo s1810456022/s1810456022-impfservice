@@ -1,17 +1,20 @@
 <br>
 <div class="ui vertical padded segment">
-  <div class="ui container two column grid"> 
-    <div class="column">
-      <h1 class="ui header">Österreich impft</h1>
-    </div>
-    <div class="column">
-      <div class="ui right floated secondary pointing menu">
-        <a routerLink="home" routerLinkActive="active" class="item">{{getAdminLabel()}}</a>
-        <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+  <div class="ui container"> 
+    <div class="ui stackable grid">
+      <div class="seven wide column ">
+        <h1 class="ui header">Österreich impft</h1>
       </div>
-    </div>
-    <div class="ui container">         
-      <div class="ui right floated segment">{{firstName}} {{lastName}}<br><b>Impfstatus:</b> {{vacStatus}} <br> <b>Termin:</b> <br> {{vacevent_date | date:'dd.MM.yyyy'}} <br> {{vacevent_location}} <br> {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}</div>       
+      <div *ngIf="isLoggedIn() && admin != '1', else elseBlock" class="five wide column">         
+        <div class="ui right floated segment">{{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location}} <br> {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}</div>       
+      </div>
+      <ng-template #elseBlock ><div class="five wide column"></div></ng-template>
+      <div class="four wide column">
+        <div class="ui right floated secondary pointing menu">
+          <a routerLink="home" routerLinkActive="active" class="item">{{getAdminLabel()}}</a>
+          <a routerLink="login" routerLinkActive="active" class="item">{{getLoginLabel()}}</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
