@@ -17,11 +17,26 @@ import {ToastrModule} from "ngx-toastr";
 import { DatePipe} from '@angular/common';
 import { VaclocationService } from './shared/vaclocation.service';
 import {MomentModule} from 'ngx-moment';
+import { LoginComponent } from './login/login.component';
+import { AuthenticationService } from './shared/authentication.service';
+import { TokenInterceptorService } from './shared/token-interceptor.service';
+import { JwtInterceptorService } from './shared/jwt.interceptor.service';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot(), MomentModule ],
-  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent ],
+  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent, LoginComponent ],
   bootstrap:    [ AppComponent ],
-  providers:    [ UserService, VaceventService, DatePipe, VaclocationService]
+  providers:    [ UserService, VaceventService, DatePipe, VaclocationService, AuthenticationService,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  },
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass: JwtInterceptorService,
+    multi: true
+  }
+  ]
 })
 export class AppModule { }
