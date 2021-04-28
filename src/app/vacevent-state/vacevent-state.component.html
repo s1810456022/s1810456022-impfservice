@@ -36,13 +36,13 @@
 <br>
 <div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
   <div *ngFor="let vacevent of vacevents" class="item" >
-    <div class="content">
-      <span *ngIf="vacevent.vaclocation.id == vaclocation_id_filtered || vaclocation_id_filtered == 0" class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
+    <div *ngIf="vacevent.vaclocation.id == vaclocation_id_filtered || vaclocation_id_filtered == 0" class="content">
+      <span class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
     </div>
   </div>
 </div>
 <!--No vacevents-->
-<div *ngIf="vacevents && !vacevents.length" class="ui vertical segment">
+<div *ngIf="!vacevents.length" class="ui vertical segment">
   <h3>{{state}}</h3>
   <div class="ui red icon message">
     <i class="x icon"></i>
