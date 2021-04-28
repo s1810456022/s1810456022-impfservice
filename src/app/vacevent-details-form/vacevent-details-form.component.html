@@ -39,7 +39,8 @@
             <input type="time" formControlName="endTime">
             <div *ngIf="errors.endTime" class="ui negative message"> {{ errors.endTime }} </div>
           </div>
-          <button type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin ändern</button>
+          <button *ngIf="isUpdatingVacevent" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin ändern</button>
+          <button *ngIf="!isUpdatingVacevent" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin speichern</button>
         </form>
       </div>
     </div>

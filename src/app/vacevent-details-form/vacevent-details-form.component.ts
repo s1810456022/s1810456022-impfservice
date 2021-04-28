@@ -55,7 +55,7 @@ export class VaceventDetailsFormComponent implements OnInit {
       this.vaceventForm = this.fb.group({
           id: this.vacevent.id,
           vaclocation_id: [this.vacevent.vaclocation_id, Validators.required],
-          maxVac: [this.vacevent.maxVac, Validators.required],
+          maxVac: [this.vacevent.maxVac, [Validators.required, Validators.min(1)]],
           date: [this.vacevent.date, Validators.required],
           startTime: [this.datePipeStart, Validators.required],
           endTime: [this.datePipeEnd, Validators.required],
