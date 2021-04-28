@@ -22,7 +22,7 @@
     <form class="ui form" *ngIf="vaclocation.length>1" [formGroup]="vaclocationForm">
         <div class="inline field">
           <label>Standort</label>
-          <select class="custom-select" formControlName="vaclocations" (change)="onChange($event)">
+          <select class="custom-select" formControlName="vaclocations" (change)="onChangeFilter($event)">
             <option value="0" [selected] = "selected">alle</option>
             <option *ngFor="let vacl of vaclocation" [value]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
           </select>

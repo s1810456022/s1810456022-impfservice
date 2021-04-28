@@ -48,7 +48,7 @@ export class VaceventStateComponent implements OnInit {
     });
   }
 
-  onChange(e: Event){
+  onChangeFilter(e: Event){
     let value = (<HTMLInputElement>e.target).value;
     console.log(value);
     if(value != "0")

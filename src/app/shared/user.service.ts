@@ -12,6 +12,9 @@ export class UserService {
   constructor(private http:HttpClient) { 
 
   }
+  getUser(userId:number):Observable<any>{
+    return this.http.get<any>(`${this.api}/vaccinationevents/registration/${userId}`).pipe(retry(3)).pipe(catchError(this.errorHandler));
+  }
 
   update(user:User):Observable<any>{
     console.log(user.id);

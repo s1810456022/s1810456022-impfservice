@@ -44,7 +44,7 @@ export class VaceventDetailsComponent implements OnInit {
     }
   }
 
-  onChange(e: Event, user){
+  onChangeEdit(e: Event, user){
     let value = (<HTMLInputElement>e.target).value;
     console.log(user);
     this.user = user;
@@ -52,8 +52,6 @@ export class VaceventDetailsComponent implements OnInit {
     this.use.update(this.user).subscribe(res =>{
       this.toastr.success(this.user.lastName, 'Impfstatus erfolgreich geändert');
     });
-
-    console.log(this.vacevent);
   }
 
 }

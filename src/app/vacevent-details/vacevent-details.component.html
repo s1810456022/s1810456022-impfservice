@@ -35,7 +35,7 @@
               <div class="inline fields">
                 <div class="three wide field">
                   <label>{{user.firstName}} {{user.lastName}}</label>
-                  <select formControlName="vacStatus" class="floated" (change)="onChange($event, user)">
+                  <select formControlName="vacStatus" class="floated" (change)="onChangeEdit($event, user)">
                     <option value="false" [selected]="!user.vacStatus">nicht geimpft</option>
                     <option value="true" [selected]="user.vacStatus">geimpft</option>
                   </select>
