@@ -5,7 +5,11 @@ import jwt_decode from 'jwt-decode';
 interface Token {
   exp: number;
   user: {
-    id:string
+    id:string,
+    admin: string,
+    firstName: string,
+    lastName: string,
+    vacStatus: number
   }
 }
 
@@ -42,10 +46,8 @@ export class AuthenticationService {
       let token = localStorage.getItem("token");
       const decodedToken = jwt_decode(token) as Token;
       let expirationDate: Date = new Date(0);
-      console.log(expirationDate);
       expirationDate.setUTCSeconds(decodedToken.exp);
       if(expirationDate < new Date()){
-        console.log("token is expired");
         localStorage.removeItem("token");
         localStorage.removeItem("token");
         return false;

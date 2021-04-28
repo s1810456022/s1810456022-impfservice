@@ -1,5 +1,5 @@
 import { Component, VERSION } from '@angular/core';
-import { Vacevent } from './shared/vacevent';
+import { AuthenticationService } from './shared/authentication.service';
 
 @Component({
   selector: 'vac-root',
@@ -7,5 +7,28 @@ import { Vacevent } from './shared/vacevent';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
+
+  constructor(private authService:AuthenticationService){}
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
+  }
+
+  getLoginLabel(){
+    if(this.isLoggedIn()){
+      return "Logout";
+    } else {
+      return "Login";
+    }
+  }
+
+  getAdminLabel(){
+    console.log()
+    if(localStorage.getItem("userRole")=="1"){
+      return "Impftermine verwalten";
+    } else {
+      return "Zur Impfung anmelden";
+    }
+  }
   
 }
