@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../shared/authentication.service';
 
+interface Response {
+  access_token: string
+}
 
 @Component({
   selector: 'vac-login',

@@ -13,7 +13,7 @@ const routes: Routes = [
   {path:'vaccinationevents', component: VaceventListComponent},
   {path:'vaccinationevents/:state', component: VaceventStateComponent},
   {path:'vaccinationevents/:state/:id', component: VaceventDetailsComponent},
-  {path:'vaccinationevents/:state/new/create', component: VaceventDetailsFormComponent}
+  {path:'vaccinationevents/:state/new/create', component: VaceventDetailsFormComponent},
   {path:'login', component: LoginComponent}
 ]
 

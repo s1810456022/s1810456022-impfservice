@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { UserService } from './shared/user.service';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { VaceventStateComponent } from './vacevent-state/vacevent-state.component';
 import { VaceventStateItemComponent } from './vacevent-state-item/vacevent-state-item.component';
 import { VaceventListComponent } from './vacevent-list/vacevent-list.component';
@@ -21,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationService } from './shared/authentication.service';
 import { TokenInterceptorService } from './shared/token-interceptor.service';
 import { JwtInterceptorService } from './shared/jwt.interceptor.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot(), MomentModule ],

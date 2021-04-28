@@ -12,7 +12,7 @@ interface Token {
 @Injectable()
 export class AuthenticationService {
 
-  private api: string = "https://bookstore21.s1810456022.student.kwmhgb.at/api/auth";
+  private api: string = "https://impfservice.s1810456022.student.kwmhgb.at/api/auth";
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +27,7 @@ export class AuthenticationService {
     localStorage.setItem("token",token);
     const decodedToken = jwt_decode(token) as Token;
     localStorage.setItem("userId", decodedToken.user.id);
+    localStorage.setItem("userRole", decodedToken.user.admin);
     // hier könnte man abfragen, hat user rolle admin oder nicht
   }
 
