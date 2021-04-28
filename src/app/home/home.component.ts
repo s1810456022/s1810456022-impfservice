@@ -1,4 +1,4 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventService } from '../shared/vacevent.service';
@@ -9,11 +9,15 @@ import { VaceventService } from '../shared/vacevent.service';
 })
 export class HomeComponent implements OnInit {
 
-  admin:boolean = true;
+  admin:boolean = false;
 
   constructor() { }
 
   ngOnInit() {
+
+     if(localStorage.getItem("admin")=="1"){
+      this.admin = true;
+    }
     
   }
 

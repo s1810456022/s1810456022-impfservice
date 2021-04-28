@@ -6,7 +6,10 @@ import { AuthenticationService } from './shared/authentication.service';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent {
+
+  admin:boolean = false;
+
 
   constructor(private authService:AuthenticationService){}
 
@@ -24,7 +27,7 @@ export class AppComponent  {
 
   getAdminLabel(){
     console.log()
-    if(localStorage.getItem("userRole")=="1"){
+    if(localStorage.getItem("admin")=="1"){
       return "Impftermine verwalten";
     } else {
       return "Zur Impfung anmelden";

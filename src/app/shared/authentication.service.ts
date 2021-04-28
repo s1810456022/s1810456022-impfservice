@@ -31,7 +31,7 @@ export class AuthenticationService {
     localStorage.setItem("token",token);
     const decodedToken = jwt_decode(token) as Token;
     localStorage.setItem("userId", decodedToken.user.id);
-    localStorage.setItem("userRole", decodedToken.user.admin);
+    localStorage.setItem("admin", decodedToken.user.admin);
     // hier könnte man abfragen, hat user rolle admin oder nicht
   }
 
@@ -39,6 +39,7 @@ export class AuthenticationService {
     this.http.post(`${this.api}/logout`, {});
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("admin");
   }
 
   public isLoggedIn(){

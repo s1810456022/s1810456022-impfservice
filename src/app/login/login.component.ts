@@ -14,10 +14,15 @@ interface Response {
 export class LoginComponent implements OnInit {
 
  loginForm: FormGroup;
+ admin:boolean = false;
 
   constructor(private fb:FormBuilder, private router:Router, private authService:AuthenticationService) { }
 
   ngOnInit() {
+    if(localStorage.getItem("admin")=="1"){
+      this.admin = true;
+    }
+
     this.loginForm = this.fb.group({
       username: ["", Validators.required, Validators.email],
       password: ["", Validators.required]

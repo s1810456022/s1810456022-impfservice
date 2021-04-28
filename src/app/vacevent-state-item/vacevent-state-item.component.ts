@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthenticationService } from '../shared/authentication.service';
 import { Vacevent } from '../shared/vacevent';
 
 @Component({
@@ -9,16 +10,25 @@ export class VaceventStateItemComponent implements OnInit {
   @Input() vacevent:Vacevent;
   tooMuch:boolean = false;
   
-  admin:boolean = true;
+  admin:boolean= false;
 
   
 
-  constructor() { }
+  constructor(private authService:AuthenticationService) { }
 
   ngOnInit() {
+    if(localStorage.getItem("admin")=="1"){
+      this.admin = true;
+    }
+
+    console.log(this.admin);
     if(this.vacevent.userAmount >= this.vacevent.maxVac){
       this.tooMuch = true;
     }
+  }
+
+  isLoggedIn(){
+    return this.authService.isLoggedIn();
   }
 
 }

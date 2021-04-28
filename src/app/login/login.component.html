@@ -1,5 +1,6 @@
 <div *ngIf="!isLoggedIn()">
- <h1>Login</h1>
+ <h2>Login</h2>
+ <p>Loggen Sie sich ein, um einen Impftermin zu buchen.</p>
  <form  class="ui large form" [formGroup]="loginForm" (ngSubmit)="login()">
    <div class="field">
      <label>E-Mail</label>
@@ -24,5 +25,8 @@
  </form>
 </div>
 <div *ngIf="isLoggedIn()">
- <button type="button" class="ui button" (click)="logout()">Logout</button>
+  <h2>Logout</h2>
+  <p *ngIf="!admin">Wir hoffen, Sie konnten einen passenden Impftermin buchen.</p><br>
+  <p *ngIf="admin">Danke für die Verwaltung der Impftermine. Bis zum nächsten Mal.</p><br>
+  <button type="button" class="ui button" (click)="logout()">Logout</button>
 </div>

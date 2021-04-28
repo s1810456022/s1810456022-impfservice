@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { Vacevent } from '../shared/vacevent';
 import { VaceventService } from '../shared/vacevent.service';
 import { Vaclocation } from '../shared/vaclocation';
@@ -14,8 +14,7 @@ export class VaceventStateComponent implements OnInit {
 
   vacevents:Vacevent[];
   state:string = "";
-
-  admin:boolean = true;
+  admin:boolean = false;
   vaclocationForm: FormGroup;
   vaclocation:Vaclocation[];
   selected:boolean = true;
@@ -26,6 +25,10 @@ export class VaceventStateComponent implements OnInit {
 
 
   ngOnInit() {
+    if(localStorage.getItem("admin")=="1"){
+      this.admin = true;
+    }
+
     const params = this.route.snapshot.params;
     let state1 = params['state'];
     this.vac.getByState(state1).subscribe(res => this.vacevents = res);
