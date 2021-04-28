@@ -21,6 +21,7 @@ export class AppComponent {
   vacevent_location:string = "";
   vacevent:Vacevent = VaceventFactory.empty();
   booked:boolean = false;
+  hasBooked:boolean = false;
 
 
   constructor(private authService:AuthenticationService, private vac:VaceventService){}
@@ -32,7 +33,8 @@ export class AppComponent {
       this.firstName = localStorage.getItem("firstName");
       this.lastName = localStorage.getItem("lastName");
       
-      if(localStorage.getItem("vacevent_event_id") != "0"){
+      if(localStorage.getItem("vacevent_id") != "null"){
+        this.hasBooked = true;
         this.booked = true;
         this.vac.getSingle(Number(localStorage.getItem("vacevent_id"))).subscribe(vacevent => {
           this.vacevent = vacevent;
@@ -42,6 +44,8 @@ export class AppComponent {
           console.log(this.vacevent.vaclocation.name);
           this.vacevent_location = this.vacevent.vaclocation.name;
         });
+      } else {
+        this.vacevent_location = "nicht angemeldet";
       }
       
     }
