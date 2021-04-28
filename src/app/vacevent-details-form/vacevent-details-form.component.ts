@@ -16,7 +16,6 @@ import moment from 'moment';
   templateUrl: './vacevent-details-form.component.html'
 })
 export class VaceventDetailsFormComponent implements OnInit {
-  @Input() vacevent:Vacevent;
 
   id:bigint;
   vaceventForm: FormGroup;
@@ -25,7 +24,7 @@ export class VaceventDetailsFormComponent implements OnInit {
   datePipeStart: string;
   datePipeEnd: string;
   vaclocation: Vaclocation[];
-  vaceventNew: Vacevent = VaceventFactory.empty();
+  vacevent: Vacevent = VaceventFactory.empty();
   state: string = "";
 
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private datePipe: DatePipe, private vacloc: VaclocationService, private toastr:ToastrService) {
@@ -39,22 +38,17 @@ export class VaceventDetailsFormComponent implements OnInit {
       this.isUpdatingVacevent = true;
       this.vac.getSingle(id).subscribe(vacevent => {
         this.vacevent = vacevent;
-        this.initVacevent(false);
-      });
-      this.vacloc.getLocationByState(this.state).subscribe(vaclocation => {
-        this.vaclocation = vaclocation;
-        this.initVacevent(false);
-      });
-    } else {
-      this.vacloc.getLocationByState(this.state).subscribe(vaclocation => {
-        this.vaclocation = vaclocation;
-        this.initVacevent(true);
+        this.initVacevent();
       });
     }
+    this.vacloc.getLocationByState(this.state).subscribe(vaclocation => {
+      this.vaclocation = vaclocation;
+      this.initVacevent();
+    });
+    this.initVacevent();
   }
 
-  initVacevent(isNew:boolean){
-    if(!isNew){
+  initVacevent(){
       this.datePipeStart = this.datePipe.transform(this.vacevent.startTime, 'HH:mm');
       this.datePipeEnd = this.datePipe.transform(this.vacevent.endTime, 'HH:mm');
   
@@ -67,20 +61,6 @@ export class VaceventDetailsFormComponent implements OnInit {
           endTime: [this.datePipeEnd, Validators.required],
 
       });
-    } else {
-      this.datePipeStart = this.datePipe.transform(this.vaceventNew.startTime, 'HH:mm');
-      this.datePipeEnd = this.datePipe.transform(this.vaceventNew.endTime, 'HH:mm');
-  
-      this.vaceventForm = this.fb.group({
-          id: this.vaceventNew.id,
-          vaclocation_id: this.vaceventNew.vaclocation_id,
-          maxVac: this.vaceventNew.maxVac,
-          date: this.vaceventNew.date,
-          startTime: this.datePipeStart,
-          endTime: this.datePipeEnd,
-
-      });
-    }
     this.vaceventForm.statusChanges.subscribe(()=>{
       this.updateErrorMessages();
     });
