@@ -14,7 +14,6 @@ export class AppComponent {
   admin:string = "";
   firstName:string = "";
   lastName:string = "";
-  vacStatus:string = "";
   vacevent_date:Date = new Date();
   vacevent_startTime:Date = new Date();
   vacevent_endTime:Date = new Date();
@@ -29,11 +28,11 @@ export class AppComponent {
   ngOnInit() {
     this.admin = localStorage.getItem("admin");
 
-    if(this.isLoggedIn() && localStorage.getItem("admin")!="1"){
+    if(this.isLoggedIn() && localStorage.getItem("admin")!== "1"){
       this.firstName = localStorage.getItem("firstName");
       this.lastName = localStorage.getItem("lastName");
       
-      if(localStorage.getItem("vacevent_id") != "null"){
+      if(localStorage.getItem("vacevent_id") !== "null"){
         this.hasBooked = true;
         this.booked = true;
         this.vac.getSingle(Number(localStorage.getItem("vacevent_id"))).subscribe(vacevent => {

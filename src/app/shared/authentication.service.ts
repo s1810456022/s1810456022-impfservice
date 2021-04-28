@@ -35,7 +35,6 @@ export class AuthenticationService {
     localStorage.setItem("admin", decodedToken.user.admin);
     localStorage.setItem("firstName", decodedToken.user.firstName);
     localStorage.setItem("lastName", decodedToken.user.lastName);
-    localStorage.setItem("vacStatus", decodedToken.user.vacStatus);
     localStorage.setItem("vacevent_id", decodedToken.user.vacevent_id);
     // hier könnte man abfragen, hat user rolle admin oder nicht
   }
@@ -45,6 +44,9 @@ export class AuthenticationService {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("admin");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("vacevent_id");
   }
 
   public isLoggedIn(){
