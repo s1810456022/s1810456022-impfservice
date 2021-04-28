@@ -14,21 +14,16 @@ export class VaceventStateItemComponent implements OnInit {
 
   
 
-  constructor(private authService:AuthenticationService) { }
+  constructor(public authService:AuthenticationService) { }
 
   ngOnInit() {
     if(localStorage.getItem("admin")=="1"){
       this.admin = true;
     }
 
-    console.log(this.admin);
     if(this.vacevent.userAmount >= this.vacevent.maxVac){
       this.tooMuch = true;
     }
-  }
-
-  isLoggedIn(){
-    return this.authService.isLoggedIn();
   }
 
 }
