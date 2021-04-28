@@ -3,7 +3,7 @@ import { User } from "./user";
 import { Vaclocation } from "./vaclocation";
 
 export class Vacevent {
-  constructor(public id:bigint, 
+  constructor(public id:number, 
   public date:Date, 
   public startTime:Date, 
   public endTime:Date, 

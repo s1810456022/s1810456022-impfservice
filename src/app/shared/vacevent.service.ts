@@ -23,12 +23,12 @@ export class VaceventService {
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  getSingle(id:bigint):Observable<Vacevent>{
+  getSingle(id:number):Observable<Vacevent>{
     return this.http.get<Vacevent>(`${this.api}/vaccinationevent/${id}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }
 
-  remove(id:bigint):Observable<any>{
+  remove(id:number):Observable<any>{
     return this.http.delete(`${this.api}/vaccinationevent/${id}`).
       pipe(retry(3)).pipe(catchError(this.errorHandler));
   }

@@ -30,12 +30,12 @@ export class VaceventStateItemComponent implements OnInit {
     }
   }
 
-  onClickBook(){
-    console.log("hallo");
+  onClickBook(vacevent_id:number){
     let userId = localStorage.getItem("userId");
     console.log(userId);
     this.use.getUser(Number(userId)).subscribe(res=>{
         this.user = res;
+        this.user.vacevent_id = Number(vacevent_id);
         this.use.update(this.user).subscribe(res =>{
         this.toastr.success("Erflogreich!", 'Impfstatus erfolgreich gebucht');
       });

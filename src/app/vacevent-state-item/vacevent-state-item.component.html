@@ -7,7 +7,7 @@
 </div>
 <div class="right floated content">
   <div *ngIf="!admin; else elseBlock">
-    <div (click)="onClickBook()" *ngIf="!tooMuch && authService.isLoggedIn()" class="ui red basic button">Termin buchen</div>
+    <div (click)="onClickBook(vacevent.id)" *ngIf="!tooMuch && authService.isLoggedIn()" class="ui red basic button">Termin buchen</div>
     <div *ngIf="tooMuch || !authService.isLoggedIn()" class="ui disabled button">Termin buchen</div>
     <br><br>
   </div>
