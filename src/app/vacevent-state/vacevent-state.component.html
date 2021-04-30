@@ -14,12 +14,12 @@
 <!-- Filters for Vacevents -->
 <div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
   <div class="ui middle aligned grid container">
-    <div class="two wide column">
+    <div class="three wide column">
       <div class="ui header red">
         <p>{{state}}</p>
       </div>
     </div>
-    <form class="ui form" *ngIf="vaclocation.length>1" [formGroup]="vaclocationForm">
+    <form class="ui form eight wide column" *ngIf="vaclocation.length>1" [formGroup]="vaclocationForm">
         <div class="inline field">
           <label>Standort</label>
           <select class="custom-select" formControlName="vaclocations" (change)="onChangeFilter($event)">
