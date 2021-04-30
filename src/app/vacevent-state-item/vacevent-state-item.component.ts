@@ -17,7 +17,6 @@ export class VaceventStateItemComponent implements OnInit {
   admin:boolean= false;
   user:User = UserFactory.empty();
 
-  
 
   constructor(public authService:AuthenticationService, private use:UserService, private toastr:ToastrService, private route:ActivatedRoute, private router:Router) { }
 

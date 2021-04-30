@@ -24,7 +24,6 @@ export class VaceventStateComponent implements OnInit {
   vacevent_endTime:Date = new Date();
   vacevent_location:string = "";
   vacevent_location_state:string = "";
-  booked:boolean = false;
   vacevent:Vacevent = VaceventFactory.empty();
   vaclocationForm: FormGroup;
   vaclocation:Vaclocation[];
@@ -64,13 +63,11 @@ export class VaceventStateComponent implements OnInit {
       this.lastName = localStorage.getItem("lastName");
       
       if(localStorage.getItem("vacevent_id") != "0"){
-        this.booked = true;
         this.vac.getSingle(Number(localStorage.getItem("vacevent_id"))).subscribe(vacevent => {
           this.vacevent = vacevent;
           this.vacevent_date = this.vacevent.date;
           this.vacevent_startTime = this.vacevent.startTime;
           this.vacevent_endTime = this.vacevent.endTime;
-          console.log(this.vacevent.vaclocation.name);
           this.vacevent_location = this.vacevent.vaclocation.name;
           this.vacevent_location_state = this.vacevent.vaclocation.state;
         });
