@@ -67,7 +67,6 @@ export class VaceventDetailsFormComponent implements OnInit {
 
   updateErrorMessages(){
     this.errors = {};
-    console.log("error");
     for(const message of VaceventDetailsFormErrorMessages){
       const control = this.vaceventForm.get(message.forControl);
       if(control && control.dirty && control.invalid && control.errors[message.forValidator] && !this.errors[message.forControl]){
@@ -75,6 +74,13 @@ export class VaceventDetailsFormComponent implements OnInit {
       }
     }
   }
+
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+}
 
   submitForm(){
     let updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
@@ -93,6 +99,7 @@ export class VaceventDetailsFormComponent implements OnInit {
     if(this.isUpdatingVacevent){
       this.vac.update(updatedVacevent).subscribe(res => {
         this.toastr.success('Erfolgreich!', 'Impftermin erfolgreich geändert');
+        this.reloadCurrentRoute();
         
       }, (err)=>{
         //TODO sinvolle Fehlermeldung, von der Rest api auch fehlermessage schicken lassen
@@ -102,7 +109,6 @@ export class VaceventDetailsFormComponent implements OnInit {
         this.router.navigate(["../../"],{relativeTo:this.route});
       });
     }
-    this.ngOnInit();
   }
 
 }
