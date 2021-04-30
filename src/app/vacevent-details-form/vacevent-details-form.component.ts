@@ -102,6 +102,7 @@ export class VaceventDetailsFormComponent implements OnInit {
         this.router.navigate(["../../"],{relativeTo:this.route});
       });
     }
+    this.ngOnInit();
   }
 
 }
