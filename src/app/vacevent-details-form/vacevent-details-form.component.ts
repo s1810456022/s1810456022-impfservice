@@ -59,7 +59,6 @@ export class VaceventDetailsFormComponent implements OnInit {
           date: [this.vacevent.date, Validators.required],
           startTime: [this.datePipeStart, Validators.required],
           endTime: [this.datePipeEnd, Validators.required],
-
       });
     this.vaceventForm.statusChanges.subscribe(()=>{
       this.updateErrorMessages();
