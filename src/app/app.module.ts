@@ -7,7 +7,6 @@ import { UserService } from './shared/user.service';
 import { AppRoutingModule } from './app-routing.module';
 import { VaceventStateComponent } from './vacevent-state/vacevent-state.component';
 import { VaceventStateItemComponent } from './vacevent-state-item/vacevent-state-item.component';
-import { VaceventListComponent } from './vacevent-list/vacevent-list.component';
 import { VaceventService } from './shared/vacevent.service';
 import { VaceventDetailsComponent } from './vacevent-details/vacevent-details.component';
 import { VaceventDetailsFormComponent } from './vacevent-details-form/vacevent-details-form.component';
@@ -27,7 +26,7 @@ registerLocaleData(localeDe);
 
 @NgModule({
   imports:      [ BrowserModule, ReactiveFormsModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule, ToastrModule.forRoot(), MomentModule ],
-  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventListComponent, VaceventDetailsComponent, VaceventDetailsFormComponent, LoginComponent ],
+  declarations: [ AppComponent, HomeComponent, VaceventStateComponent, VaceventStateItemComponent, VaceventDetailsComponent, VaceventDetailsFormComponent, LoginComponent ],
   bootstrap:    [ AppComponent ],
   providers:    [ UserService, VaceventService, DatePipe, VaclocationService, AuthenticationService,
   {
