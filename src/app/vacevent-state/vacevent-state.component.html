@@ -12,14 +12,14 @@
 <br>
 <button routerLink="../../home" class="ui red button tiny">Zurück zur Übersicht</button><br><br>
 <!-- Filters for Vacevents -->
-<div *ngIf="vacevents && vacevents.length" class="ui vertical strip segment">
+<div *ngIf="vacevents == undefined || vacevents && vacevents.length" class="ui vertical strip segment">
   <div class="ui middle aligned grid container">
     <div class="three wide column">
       <div class="ui header red">
         <p>{{state}}</p>
       </div>
     </div>
-    <form class="ui form eight wide column" *ngIf="vaclocation.length>1" [formGroup]="vaclocationForm">
+    <form class="ui form eight wide column" *ngIf="vacevents == undefined || vaclocation == undefined || vaclocation.length>1" [formGroup]="vaclocationForm">
         <div class="inline field">
           <label>Standort</label>
           <select class="custom-select" formControlName="vaclocations" (change)="onChangeFilter($event)">
@@ -30,11 +30,14 @@
     </form>
   </div>
 </div>
+<div *ngIf="isLoggedIn() && admin != '1'" class="five wide column">         
+        <div class="ui right floated segment">{{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location}} <br> {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}</div>       
+      </div>
 <!-- List of Vacevents -->
 <br>
 <div *ngIf="admin" [routerLink]="['./new/create']" class="ui right floated red button tiny">+ Neuen Termin anlege</div>
 <br>
-<div *ngIf="vacevents && vacevents.length"  class="ui middle aligned divided list">
+<div *ngIf="vacevents == undefined || vacevents && vacevents.length"  class="ui middle aligned divided list">
   <div *ngFor="let vacevent of vacevents" class="item" >
     <div *ngIf="vacevent.vaclocation.id == vaclocation_id_filtered || vaclocation_id_filtered == 0" class="content">
       <span class="item vac-vacevent-state-item" [vacevent]="vacevent"></span>
@@ -42,7 +45,7 @@
   </div>
 </div>
 <!--No vacevents-->
-<div *ngIf="!vacevents.length" class="ui vertical segment">
+<div *ngIf="vacevents == undefined || !vacevents.length" class="ui vertical segment">
   <h3>{{state}}</h3>
   <div class="ui red icon message">
     <i class="x icon"></i>

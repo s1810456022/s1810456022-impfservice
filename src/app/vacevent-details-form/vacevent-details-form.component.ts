@@ -80,11 +80,12 @@ export class VaceventDetailsFormComponent implements OnInit {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate([currentUrl]);
     });
-}
+  }
 
   submitForm(){
-    let updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
 
+    let updatedVacevent:Vacevent = VaceventFactory.fromObject(this.vaceventForm.value);
+    console.log(this.vaceventForm.value.startTime);
     const startTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.startTime).toDate();
     const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
     updatedVacevent.startTime = startTimeNew; 
@@ -98,7 +99,7 @@ export class VaceventDetailsFormComponent implements OnInit {
     
     if(this.isUpdatingVacevent){
       this.vac.update(updatedVacevent).subscribe(res => {
-        this.toastr.success('Erfolgreich!', 'Impftermin erfolgreich geändert');
+        this.toastr.success('Impftermin erfolgreich geändert');
         this.reloadCurrentRoute();
         
       }, (err)=>{

@@ -6,7 +6,10 @@ interface Token {
   exp: number;
   user: {
     id:string,
-    admin: string
+    admin: string,
+    firstName: string,
+    lastName: string,
+    vacevent_id: string,
   }
 }
 
@@ -29,6 +32,9 @@ export class AuthenticationService {
     const decodedToken = jwt_decode(token) as Token;
     localStorage.setItem("userId", decodedToken.user.id);
     localStorage.setItem("admin", decodedToken.user.admin);
+    localStorage.setItem("firstName", decodedToken.user.firstName);
+    localStorage.setItem("lastName", decodedToken.user.lastName);
+    localStorage.setItem("vacevent_id", decodedToken.user.vacevent_id);
   }
 
   public logout(){
@@ -36,6 +42,9 @@ export class AuthenticationService {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("admin");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("lastName");
+    localStorage.removeItem("vacevent_id");
   }
 
   public isLoggedIn(){

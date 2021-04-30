@@ -5,6 +5,7 @@ import { UserFactory } from '../shared/user-factory';
 import { UserService } from '../shared/user.service';
 import { Vacevent } from '../shared/vacevent';
 import { ToastrService} from "ngx-toastr";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'span.vac-vacevent-state-item',
@@ -18,7 +19,7 @@ export class VaceventStateItemComponent implements OnInit {
 
   
 
-  constructor(public authService:AuthenticationService, private use:UserService, private toastr:ToastrService) { }
+  constructor(public authService:AuthenticationService, private use:UserService, private toastr:ToastrService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     if(localStorage.getItem("admin")=="1"){
@@ -30,6 +31,13 @@ export class VaceventStateItemComponent implements OnInit {
     }
   }
 
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+  }
+
   onClickBook(vacevent_id:number){
     let userId = localStorage.getItem("userId");
     console.log(userId);
@@ -37,10 +45,10 @@ export class VaceventStateItemComponent implements OnInit {
         this.user = res;
         this.user.vacevent_id = Number(vacevent_id);
         this.use.update(this.user).subscribe(res =>{
-        this.toastr.success("Erflogreich!", 'Impfstatus erfolgreich gebucht');
+        this.toastr.success('Impftermin erfolgreich gebucht');
+        this.reloadCurrentRoute();
       });
     });
-
   }
 
 }
