@@ -23,6 +23,7 @@ export class VaceventStateComponent implements OnInit {
   vacevent_startTime:Date = new Date();
   vacevent_endTime:Date = new Date();
   vacevent_location:string = "";
+  vacevent_location_state:string = "";
   booked:boolean = false;
   vacevent:Vacevent = VaceventFactory.empty();
   vaclocationForm: FormGroup;
@@ -71,6 +72,7 @@ export class VaceventStateComponent implements OnInit {
           this.vacevent_endTime = this.vacevent.endTime;
           console.log(this.vacevent.vaclocation.name);
           this.vacevent_location = this.vacevent.vaclocation.name;
+          this.vacevent_location_state = this.vacevent.vaclocation.state;
         });
       }
     }

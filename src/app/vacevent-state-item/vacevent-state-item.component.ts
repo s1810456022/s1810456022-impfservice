@@ -46,6 +46,7 @@ export class VaceventStateItemComponent implements OnInit {
         this.user.vacevent_id = Number(vacevent_id);
         this.use.update(this.user).subscribe(res =>{
         this.toastr.success('Impftermin erfolgreich gebucht');
+        localStorage.setItem("vacevent_id", String(this.vacevent.id));
         this.reloadCurrentRoute();
       });
     });
