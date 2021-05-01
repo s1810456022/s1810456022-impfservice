@@ -16,8 +16,8 @@ export class CanManageVaceventsGuard implements CanActivate {
     if(this.authService.isLoggedIn() && localStorage.getItem("admin") == "1"){
       return true;
     } else {
-      window.alert("Sie sind als Admin eingelogged und haben keine Berechtigung für diesen Bereich.");
-      this.router.navigate(["../"], {relativeTo:this.route});
+      window.alert("Sie sind nicht als Admin eingelogged und haben keine Berechtigung für diesen Bereich.");
+      this.router.navigate(["../../"], {relativeTo:this.route});
       return false;
     }
   }
