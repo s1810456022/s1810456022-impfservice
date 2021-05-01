@@ -1,7 +1,9 @@
 <div id="editform" class="item">
     <div class="content">
+      <!--Back Button-->
       <button *ngIf="!isUpdatingVacevent" [routerLink]="['../../']" class="ui red button tiny">Zurück zur Übersicht</button>
       <div class="ui segment">
+        <!--Headlines-->
         <h3 *ngIf="isUpdatingVacevent; else elseBlock" >Termin ändern</h3>
         <ng-template #elseBlock>
           <h2>Neuen Impftermin anlegen</h2>
@@ -10,8 +12,10 @@
             <p>{{this.state}}</p>
           </div>
         </ng-template>
+        <!--Form-->
         <form  class="ui large form" [formGroup]="vaceventForm" (ngSubmit)="submitForm()">
           <input type="hidden" name="id">
+          <!--Location-->
           <div class="field">
             <label>Standort</label>
             <select class="custom-select" formControlName="vaclocation_id">
@@ -20,11 +24,13 @@
             </select>
             <div *ngIf="errors.vaclocation_id" class="ui negative message"> {{ errors.vaclocation_id }} </div>
           </div>
+          <!--MaxVac-->
           <div class="field">
             <label>Maximale Teilnehmer*innenanzahl</label>
             <input formControlName="maxVac">
             <div *ngIf="errors.maxVac" class="ui negative message"> {{ errors.maxVac }} </div>
           </div>
+          <!--Date, Time-->
           <div class="field">
             <label>Datum</label>
             <input type="date" formControlName="date">
@@ -40,6 +46,7 @@
             <input type="time" formControlName="endTime">
             <div *ngIf="errors.endTime" class="ui negative message"> {{ errors.endTime }} </div>
           </div>
+          <!--Buttons-->
           <button *ngIf="isUpdatingVacevent" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin ändern</button>
           <button *ngIf="!isUpdatingVacevent" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin speichern</button>
         </form>

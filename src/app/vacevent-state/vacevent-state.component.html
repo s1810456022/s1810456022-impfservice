@@ -28,6 +28,7 @@
           </select>
         </div>
     </form>
+    <!--Reservation Details-->
     <div *ngIf="isLoggedIn() && admin != '1'" class="six wide column">         
       <div class="ui segment" [style]="isHidden"><b>Aktuelle Reservierung:</b> <br> {{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location_state}}, {{vacevent_location}}  | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}
     </div> 
