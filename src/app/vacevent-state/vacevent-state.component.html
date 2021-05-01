@@ -23,13 +23,13 @@
         <div class="inline field">
           <label>Standort</label>
           <select class="custom-select" formControlName="vaclocations" (change)="onChangeFilter($event)">
-            <option value="0" [selected] = "selected">alle</option>
+            <option value="0">alle</option>
             <option *ngFor="let vacl of vaclocation" [value]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
           </select>
         </div>
     </form>
     <div *ngIf="isLoggedIn() && admin != '1'" class="six wide column">         
-      <div class="ui segment"><b>Aktuelle Reservierung:</b> <br> {{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location_state}}, {{vacevent_location}}  | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}
+      <div class="ui segment" [style]="isHidden"><b>Aktuelle Reservierung:</b> <br> {{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location_state}}, {{vacevent_location}}  | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}
     </div> 
   </div>      
   </div>

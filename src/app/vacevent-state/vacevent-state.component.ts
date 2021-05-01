@@ -27,8 +27,8 @@ export class VaceventStateComponent implements OnInit {
   vacevent:Vacevent = VaceventFactory.empty();
   vaclocationForm: FormGroup;
   vaclocation:Vaclocation[];
-  selected:boolean = true;
   vaclocation_id_filtered:number = 0;
+  isHidden:string = "";
 
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private vacloc:VaclocationService, private fb:FormBuilder, private authService:AuthenticationService) { }
@@ -61,8 +61,10 @@ export class VaceventStateComponent implements OnInit {
     if(this.isLoggedIn() && localStorage.getItem("admin")!="1"){
       this.firstName = localStorage.getItem("firstName");
       this.lastName = localStorage.getItem("lastName");
+
+      console.log(localStorage.getItem("vacevent_id"));
       
-      if(localStorage.getItem("vacevent_id") != "0"){
+      if(localStorage.getItem("vacevent_id") != "null"){
         this.vac.getSingle(Number(localStorage.getItem("vacevent_id"))).subscribe(vacevent => {
           this.vacevent = vacevent;
           this.vacevent_date = this.vacevent.date;
@@ -71,6 +73,8 @@ export class VaceventStateComponent implements OnInit {
           this.vacevent_location = this.vacevent.vaclocation.name;
           this.vacevent_location_state = this.vacevent.vaclocation.state;
         });
+      } else {
+        this.isHidden ="display: none";
       }
     }
   }
