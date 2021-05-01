@@ -8,6 +8,7 @@
 <!--VaceventDetails-->
 <div class="ui items">
   <div class="item">
+    <!--Info Big-->
     <div class="content">
       <div class="header">{{ vacevent?.vaclocation.name }} | {{vacevent?.date | date:'dd.MM.yyyy'}} | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}</div>
     </div>
@@ -15,15 +16,18 @@
   <div class="item" >
     <div class="content">
       <div class="ui segment">
+        <!--Buttons Edit, Remove-->
         <button class="ui right floated icon button">
           <i class="trash alternate outline icon" (click)="removeVacevent()"></i>
         </button>
         <button class="ui right floated icon button" (click)="isFormVisible = !isFormVisible">
           <i class="edit outline icon"></i>
         </button>
+        <!--Info Small-->
         <p><b>Bundesland:</b> {{vacevent?.vaclocation.state}}</p>
         <p><b>Impfort:</b> {{vacevent?.vaclocation.city}}</p>
         <p><b>Maximale Teilnehmer*innenzahl:</b> {{vacevent?.maxVac}}</p>
+        <!--Users-->
         <div *ngIf="vacevent && !vacevent.users.length; else elseBlock">
           <p><b>Angemeldete Teilnehmer*innen:</b> Es haben sich noch keine Teilnehmer*innen angemeldet.</p>
         </div>
@@ -47,6 +51,6 @@
       </div>
     </div>
   </div>
-  <!--Change Vacevent-->
+  <!--Change Vacevent Form-->
   <vac-vacevent-details-form *ngIf="isFormVisible"></vac-vacevent-details-form>
 </div>
