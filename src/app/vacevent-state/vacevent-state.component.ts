@@ -28,7 +28,8 @@ export class VaceventStateComponent implements OnInit {
   vaclocationForm: FormGroup;
   vaclocation:Vaclocation[];
   vaclocation_id_filtered:number = 0;
-  isHidden:string = "";
+  reservationHidden:string = "";
+  noReservationHidden:string = "";
 
 
   constructor(private vac:VaceventService, private route:ActivatedRoute, private vacloc:VaclocationService, private fb:FormBuilder, private authService:AuthenticationService) { }
@@ -65,6 +66,9 @@ export class VaceventStateComponent implements OnInit {
       console.log(localStorage.getItem("vacevent_id"));
       
       if(localStorage.getItem("vacevent_id") != "null"){
+        
+        this.reservationHidden ="display: block";
+        this.noReservationHidden ="display: none";
         this.vac.getSingle(Number(localStorage.getItem("vacevent_id"))).subscribe(vacevent => {
           this.vacevent = vacevent;
           this.vacevent_date = this.vacevent.date;
@@ -74,7 +78,8 @@ export class VaceventStateComponent implements OnInit {
           this.vacevent_location_state = this.vacevent.vaclocation.state;
         });
       } else {
-        this.isHidden ="display: none";
+        this.reservationHidden ="display: none";
+        this.noReservationHidden ="display: block";
       }
     }
   }
