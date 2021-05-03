@@ -9,7 +9,7 @@ interface Token {
     admin: string,
     firstName: string,
     lastName: string,
-    vacevent_id: string,
+    vacevent_id: string
   }
 }
 

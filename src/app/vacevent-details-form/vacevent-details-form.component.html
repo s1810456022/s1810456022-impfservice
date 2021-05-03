@@ -19,6 +19,7 @@
           <div class="field">
             <label>Standort</label>
             <select class="custom-select" formControlName="vaclocation_id">
+            
               <option *ngFor="let vacl of vaclocation" [value]="vacl.id">{{vacl.name}}, {{vacl.city}}</option>
               <option *ngIf="vaclocation == undefined || vaclocation.length == 0" value="0" >Keine Impforte vorhanden für dieses Bundesland</option>
             </select>

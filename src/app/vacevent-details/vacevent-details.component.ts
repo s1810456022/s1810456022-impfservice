@@ -30,7 +30,8 @@ export class VaceventDetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.vac.getSingle(id).subscribe(vacevent => {
       this.vacevent = vacevent;
-      if(this.vacevent.date > this.dateToday)
+
+      if(new Date(this.vacevent.date) > this.dateToday)
         this.isDateinPast = true;
       console.log(this.vacevent.date);
       console.log(this.dateToday);

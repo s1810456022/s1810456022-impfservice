@@ -90,7 +90,7 @@ export class VaceventDetailsFormComponent implements OnInit {
     const endTimeNew = moment(this.vaceventForm.value.date + ' ' + this.vaceventForm.value.endTime).toDate();
     updatedVacevent.startTime = startTimeNew; 
     updatedVacevent.endTime = endTimeNew; 
-    this.vacloc.getLocationById(this.vaceventForm.value.vaclocation_id).subscribe(res  => {updatedVacevent.vaclocation = res;});
+    this.vacloc.getLocationById(this.vaceventForm.controls['vaclocation_id'].value).subscribe(res  => {updatedVacevent.vaclocation = res;});
 
     if(this.isUpdatingVacevent)
       updatedVacevent.users = this.vacevent.users;
@@ -101,9 +101,6 @@ export class VaceventDetailsFormComponent implements OnInit {
       this.vac.update(updatedVacevent).subscribe(res => {
         this.toastr.success('Impftermin erfolgreich geändert');
         this.reloadCurrentRoute();
-        
-      }, (err)=>{
-        //TODO sinvolle Fehlermeldung, von der Rest api auch fehlermessage schicken lassen
       });
     } else {
       this.vac.create(updatedVacevent).subscribe(res => {
