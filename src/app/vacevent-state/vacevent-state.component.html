@@ -30,14 +30,14 @@
     </form>
     <!--Reservation Details-->
     <div *ngIf="isLoggedIn() && admin != '1'" class="six wide column">         
-      <div class="ui segment" [style]="isHidden"><b>Aktuelle Reservierung:</b> <br> {{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location_state}}, {{vacevent_location}}  | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}
+      <div class="ui green segment" [style]="isHidden"><b>Reservierung:</b> <br> {{firstName}} {{lastName}}<br><b>Termin:</b> {{vacevent_date | date:'dd.MM.yyyy'}} | {{vacevent_location_state}}, {{vacevent_location}}  | {{vacevent?.startTime | date:'shortTime'}} - {{vacevent?.endTime | date:'shortTime'}}
     </div> 
   </div>      
   </div>
 </div>
 <!-- List of Vacevents -->
 <br>
-<div *ngIf="admin" [routerLink]="['./new/create']" class="ui right floated red button tiny">+ Neuen Termin anlege</div>
+<div *ngIf="admin == '1'" [routerLink]="['./new/create']" class="ui right floated red button tiny">+ Neuen Termin anlege</div>
 <br>
 <div *ngIf="vacevents == undefined || vacevents && vacevents.length"  class="ui middle aligned divided list">
   <div *ngFor="let vacevent of vacevents" class="item" >

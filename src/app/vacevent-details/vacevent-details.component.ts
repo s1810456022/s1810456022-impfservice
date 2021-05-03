@@ -19,6 +19,9 @@ export class VaceventDetailsComponent implements OnInit {
   userForm: FormGroup;
   user:User = UserFactory.empty();
   isFormVisible: boolean = false;
+  dateToday:Date = new Date();
+  isDateinPast:boolean = false;
+
   
   constructor(private fb:FormBuilder, private vac:VaceventService, private route:ActivatedRoute, private router:Router, private use:UserService, private toastr:ToastrService) { }
 
@@ -27,6 +30,10 @@ export class VaceventDetailsComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.vac.getSingle(id).subscribe(vacevent => {
       this.vacevent = vacevent;
+      if(this.vacevent.date > this.dateToday)
+        this.isDateinPast = true;
+      console.log(this.vacevent.date);
+      console.log(this.dateToday);
     });
     this.userForm = this.fb.group({
       vacStatus: this.user.vacStatus

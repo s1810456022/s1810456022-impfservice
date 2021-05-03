@@ -17,10 +17,10 @@
     <div class="content">
       <div class="ui segment">
         <!--Buttons Edit, Remove-->
-        <button class="ui right floated icon button">
+        <button *ngIf="!isDateinPast" class="ui right floated icon button">
           <i class="trash alternate outline icon" (click)="removeVacevent()"></i>
         </button>
-        <button class="ui right floated icon button" (click)="isFormVisible = !isFormVisible">
+        <button *ngIf="!isDateinPast" class="ui right floated icon button" (click)="isFormVisible = !isFormVisible">
           <i class="edit outline icon"></i>
         </button>
         <!--Info Small-->

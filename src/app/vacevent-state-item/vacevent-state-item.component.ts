@@ -16,14 +16,18 @@ export class VaceventStateItemComponent implements OnInit {
   tooMuch:boolean = false;
   admin:boolean= false;
   user:User = UserFactory.empty();
+  hasReservation:boolean = false;
 
 
   constructor(public authService:AuthenticationService, private use:UserService, private toastr:ToastrService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
+    console.log(this.hasReservation);
     if(localStorage.getItem("admin")=="1"){
       this.admin = true;
     }
+    if(localStorage.getItem("vacevent_id") != "null")
+      this.hasReservation = true;
 
     if(this.vacevent.userAmount >= this.vacevent.maxVac){
       this.tooMuch = true;
