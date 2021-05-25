@@ -6,8 +6,6 @@ import { AuthenticationService } from './authentication.service';
 @Injectable()
 export class CanManageVaceventsGuard implements CanActivate {
 
-  isAdmin:boolean = false;
-
   constructor(private authService:AuthenticationService, private router:Router, private route:ActivatedRoute) {}
 
   canActivate(

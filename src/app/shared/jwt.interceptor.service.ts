@@ -24,7 +24,7 @@ export class JwtInterceptorService
          // or show a modal
          // http://jasonwatmore.com/post/2016/09/29/angular-2-user-registration-and-login-example-tutorial
          console.log("error");
-         alert("Invalid login");
+         alert("Die E-Mail Adresse oder das Passwort ist nicht korrekt.");
        }
      }
    }));
