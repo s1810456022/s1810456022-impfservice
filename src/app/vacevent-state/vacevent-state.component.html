@@ -1,12 +1,12 @@
 <!-- Intoduction -->
 <div class="ui vertical stripe segment">
-  <div *ngIf="!admin; else elseBlock">
+  <div *ngIf="admin != '1'; else elseBlock">
     <h2>Anmeldung zur Corona-Impfung</h2>
     <p>Wählen Sie einen Impftermin aus. <b>Sie können nur einen Termin buchen, wenn Sie eingeloggt sind.</b></p>
   </div>
   <ng-template #elseBlock>
     <h2>Impftermine verwalten</h2>
-    <p>Wählen Sie aus, für welches Bundesland Sie Impftermine verwalten möchten.</p>
+    <p>Bearbeiten Sie die Impftermine dieses Bundeslandes.</p>
   </ng-template>
 </div>
 <br>
