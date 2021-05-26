@@ -49,7 +49,8 @@
           </div>
           <!--Buttons-->
           <button *ngIf="isUpdatingVacevent" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin ändern</button>
-          <button *ngIf="!isUpdatingVacevent" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin speichern</button>
+          <button *ngIf="!isUpdatingVacevent && vaclocation != undefined && vaclocation.length != 0" type="submit" class="ui button" [disabled]="vaceventForm.invalid">Termin speichern</button>
+          <button *ngIf="vaclocation == undefined || vaclocation.length == 0" type="submit" class="ui disabled button">Termin speichern</button>
         </form>
       </div>
     </div>
